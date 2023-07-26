@@ -3,8 +3,15 @@ from tkinter import *
 def next():
     mainWin = Tk()
 
+    menuBar = Menu(mainWin)
+
+    fileMenu = Menu(menuBar)
+    menuBar.add_cascade(label="File", menu=fileMenu)
+    editMenu = Menu(menuBar)
+    menuBar.add_cascade(label="Edit", menu=editMenu)
+
     mainWin.geometry("900x600")
-    mainWin.config(background="#FC4C4F")
+    mainWin.config(background="#FC4C4F", menu=menuBar)
     welcome.destroy()
 
 welcome = Tk()
