@@ -3,12 +3,21 @@ from tkinter import *
 def next():
     mainWin = Tk()
 
-    menuBar = Menu(mainWin)
+    menuBar = Menu(mainWin, font=("Arial", 30))
 
-    fileMenu = Menu(menuBar)
+    fileMenu = Menu(menuBar, tearoff=0, font=("Arial", 10))
     menuBar.add_cascade(label="File", menu=fileMenu)
-    editMenu = Menu(menuBar)
+    fileMenu.add_command(label="New")
+    fileMenu.add_command(label="Open")
+    fileMenu.add_command(label="Save")
+    fileMenu.add_command(label="Save As")
+    fileMenu.add_command(label="Exit")
+
+    editMenu = Menu(menuBar, tearoff=0, font=("Arial", 10))
     menuBar.add_cascade(label="Edit", menu=editMenu)
+    editMenu.add_command(label="Background")
+    editMenu.add_command(label="Font")
+    editMenu.add_command(label="Font Size")
 
     mainWin.geometry("900x600")
     mainWin.config(background="#FC4C4F", menu=menuBar)
