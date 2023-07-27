@@ -1,8 +1,14 @@
 from tkinter import *
 from tkinter import colorchooser
+from tkinter import filedialog
+import os
 
 #Code for the main window (after next button is pressed)
 def nextB():
+    #Function for opening an already existing file
+    def Open():
+        os.startfile(filedialog.askopenfilename())
+
     #Function for exiting the window
     def exit():
         mainWin.destroy()
@@ -19,18 +25,18 @@ def nextB():
     #File drop down menu
     fileMenu = Menu(menuBar, tearoff=0, font=("Arial", 10))
     menuBar.add_cascade(label="File", menu=fileMenu)
-    fileMenu.add_command(label="New", command=new)
+    fileMenu.add_command(label="New")#, command=new)
     fileMenu.add_command(label="Open", command=Open)
-    fileMenu.add_command(label="Save", command=save)
-    fileMenu.add_command(label="Save As", command=SaveAs)
+    fileMenu.add_command(label="Save")#, command=save)
+    fileMenu.add_command(label="Save As")#, command=SaveAs)
     fileMenu.add_command(label="Exit", command=exit)
 
     #Edit drop down menu
     editMenu = Menu(menuBar, tearoff=0, font=("Arial", 10))
     menuBar.add_cascade(label="Edit", menu=editMenu)
     editMenu.add_command(label="Background", command=bGround)
-    editMenu.add_command(label="Font", command=font)
-    editMenu.add_command(label="Font Size", command=fSize)
+    editMenu.add_command(label="Font")#, command=font)
+    editMenu.add_command(label="Font Size")#, command=fSize)
 
     mainWin.geometry("900x600")
     mainWin.config(background="#FC4C4F", menu=menuBar)
