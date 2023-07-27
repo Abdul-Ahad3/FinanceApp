@@ -19,18 +19,18 @@ def nextB():
     #File drop down menu
     fileMenu = Menu(menuBar, tearoff=0, font=("Arial", 10))
     menuBar.add_cascade(label="File", menu=fileMenu)
-    fileMenu.add_command(label="New")
-    fileMenu.add_command(label="Open")
-    fileMenu.add_command(label="Save")
-    fileMenu.add_command(label="Save As")
+    fileMenu.add_command(label="New", command=new)
+    fileMenu.add_command(label="Open", command=Open)
+    fileMenu.add_command(label="Save", command=save)
+    fileMenu.add_command(label="Save As", command=SaveAs)
     fileMenu.add_command(label="Exit", command=exit)
 
     #Edit drop down menu
     editMenu = Menu(menuBar, tearoff=0, font=("Arial", 10))
     menuBar.add_cascade(label="Edit", menu=editMenu)
     editMenu.add_command(label="Background", command=bGround)
-    editMenu.add_command(label="Font")
-    editMenu.add_command(label="Font Size")
+    editMenu.add_command(label="Font", command=font)
+    editMenu.add_command(label="Font Size", command=fSize)
 
     mainWin.geometry("900x600")
     mainWin.config(background="#FC4C4F", menu=menuBar)
