@@ -17,6 +17,10 @@ def nextB():
     def bGround():
         mainWin.config(bg=colorchooser.askcolor()[1])
 
+    def fSize():
+        fs = str(fsChange.get())
+        print(fs)
+    
     #Main window
     mainWin = Tk()
 
@@ -36,7 +40,11 @@ def nextB():
     menuBar.add_cascade(label="Edit", menu=editMenu)
     editMenu.add_command(label="Background", command=bGround)
     editMenu.add_command(label="Font")#, command=font)
-    editMenu.add_command(label="Font Size")#, command=fSize)
+    editMenu.add_command(label="Font Size", command=fSize)
+
+    #Scale for changing font size
+    fsChange = Scale(mainWin,from_=50, to=10, length=200, font=('Arial', 15))
+    fsChange.pack()
 
     mainWin.geometry("900x600")
     mainWin.config(background="#FC4C4F", menu=menuBar)
