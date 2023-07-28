@@ -5,6 +5,10 @@ import os
 
 #Code for the main window (after next button is pressed)
 def nextB():
+    #Function for opening a new file
+    def new():
+        file = open("C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\file.txt", 'x')
+
     #Function for opening an already existing file
     def Open():
         os.startfile(filedialog.askopenfilename())
@@ -16,9 +20,6 @@ def nextB():
     #Function for changing background color
     def bGround():
         mainWin.config(bg=colorchooser.askcolor()[1])
-
-    def fSize():
-        fsChange.pack()
     
     #Main window
     mainWin = Tk()
@@ -29,7 +30,7 @@ def nextB():
     #File drop down menu
     fileMenu = Menu(menuBar, tearoff=0, font=("Arial", 10))
     menuBar.add_cascade(label="File", menu=fileMenu)
-    fileMenu.add_command(label="New")#, command=new)
+    fileMenu.add_command(label="New", command=new)
     fileMenu.add_command(label="Open", command=Open)
     fileMenu.add_command(label="Save")#, command=save)
     fileMenu.add_command(label="Save As")#, command=SaveAs)
@@ -39,7 +40,6 @@ def nextB():
     editMenu = Menu(menuBar, tearoff=0, font=("Arial", 10))
     menuBar.add_cascade(label="Edit", menu=editMenu)
     editMenu.add_command(label="Background", command=bGround)
-    editMenu.add_command(label="Font Size", command=fSize)
     
     #Font Size menu in Edit Menu
     fsMenu = Menu(editMenu, tearoff=0, font=('Arial', 10))
@@ -55,8 +55,10 @@ def nextB():
     fontMenu.add_command(label="Times New Roman")
     fontMenu.add_command(label="Calibri")
 
-    #Scale for changing font size
-    fsChange = Scale(mainWin,from_=50, to=10, length=200, font=('Arial', 15))
+    #Entry box for title
+    title = Entry(mainWin, font=('Arial', 40), width=20)
+    title.insert(0, 'Enter title')
+    title.pack()
 
     mainWin.geometry("900x600")
     mainWin.config(background="#FC4C4F", menu=menuBar)
