@@ -24,6 +24,7 @@ def nextB():
     mainWin = Tk()
 
     menuBar = Menu(mainWin, font=("Arial", 30)) #Main menu bar
+    i=10
 
     #File drop down menu
     fileMenu = Menu(menuBar, tearoff=0, font=("Arial", 10))
@@ -39,6 +40,13 @@ def nextB():
     menuBar.add_cascade(label="Edit", menu=editMenu)
     editMenu.add_command(label="Background", command=bGround)
     editMenu.add_command(label="Font Size", command=fSize)
+    
+    #Font Size menu in Edit Menu
+    fsMenu = Menu(editMenu, tearoff=0, font=('Arial', 10))
+    editMenu.add_cascade(label='Font Size', menu=fsMenu)
+    while(i<=50):
+        fsMenu.add_command(label=str(i))
+        i+=2
     
     #Font menu in Edit Menu
     fontMenu = Menu(editMenu, tearoff=0, font=('Arial', 10))
