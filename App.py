@@ -56,9 +56,16 @@ def nextB():
     fontMenu.add_command(label="Calibri")
 
     #Entry box for title
-    title = Entry(mainWin, font=('Arial', 40), width=20)
+    title = Entry(mainWin, font=('Arial', 30), width=20)
     title.insert(0, 'Enter title')
     title.pack()
+    def clear_entry(event):
+        title.delete(0, END)
+    title.bind('<FocusIn>', clear_entry)
+    
+    #Button to show preview
+    preview = Button(mainWin, text='Show Preview', font=('Arial', 15))
+    preview.place(relx=0.98, rely=0.98, anchor='se')
 
     mainWin.geometry("900x600")
     mainWin.config(background="#FC4C4F", menu=menuBar)
