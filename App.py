@@ -18,8 +18,7 @@ def nextB():
         mainWin.config(bg=colorchooser.askcolor()[1])
 
     def fSize():
-        fs = str(fsChange.get())
-        print(fs)
+        fsChange.pack()
     
     #Main window
     mainWin = Tk()
@@ -39,12 +38,17 @@ def nextB():
     editMenu = Menu(menuBar, tearoff=0, font=("Arial", 10))
     menuBar.add_cascade(label="Edit", menu=editMenu)
     editMenu.add_command(label="Background", command=bGround)
-    editMenu.add_command(label="Font")#, command=font)
     editMenu.add_command(label="Font Size", command=fSize)
+    
+    #Font menu in Edit Menu
+    fontMenu = Menu(editMenu, tearoff=0, font=('Arial', 10))
+    editMenu.add_cascade(label='Font', menu=fontMenu)
+    fontMenu.add_command(label="Arial")
+    fontMenu.add_command(label="Times New Roman")
+    fontMenu.add_command(label="Calibri")
 
     #Scale for changing font size
     fsChange = Scale(mainWin,from_=50, to=10, length=200, font=('Arial', 15))
-    fsChange.pack()
 
     mainWin.geometry("900x600")
     mainWin.config(background="#FC4C4F", menu=menuBar)
