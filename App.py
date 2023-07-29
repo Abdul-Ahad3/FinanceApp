@@ -1,6 +1,8 @@
 from tkinter import *
+import tkinter as tk
 from tkinter import colorchooser
 from tkinter import filedialog
+import calendar
 import os
 
 #Code for the main window (after next button is pressed)
@@ -76,7 +78,10 @@ def nextB():
     transLabel.place(relx=0.01, rely=0.21)
 
     #Transaction Menu
-    transac = Menu(mainWin, font=('Arial', 20))
+    transac = Menu(mainWin, font=('Arial', 20))  # Example: Create a Transaction menu, add commands, and associate with the mainWin window.
+    transac.add_command(label="Transaction 1")
+    transac.add_command(label="Transaction 2")
+    transac.add_command(label="Transaction 3")
     
     #Button to show preview
     preview = Button(mainWin, text='Show Preview', font=('Arial', 15), bg='black', fg='#FC4C4F')
@@ -85,18 +90,17 @@ def nextB():
     mainWin.geometry("900x600")
     mainWin.config(background="#FC4C4F", menu=menuBar)
     welcome.destroy()
-    mainWin.mainloop()
 
 #Welcome window
 welcome = Tk()
 
 label1 = Label(welcome, text="My App", font=('Arial',50,'bold'),bg='#FC4C4F')
 label2 = Label(welcome, text="WELCOME", font=('Arial',50),bg='#FC4C4F')
-nextB = Button(text='NEXT', font=('Arial',40), bg='black', fg='#FC4C4F', command=nextB)
+nextButton = Button(text='NEXT', font=('Arial',40), bg='black', fg='#FC4C4F', command=nextB)
 
 label1.pack()   
 label2.pack()
-nextB.place(x=150, y=300)
+nextButton.place(relx=0.35, rely=0.6)
 welcome.geometry("500x500")
 welcome.config(background="#FC4C4F")
 
