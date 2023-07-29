@@ -56,30 +56,30 @@ def nextB():
     fontMenu.add_command(label="Calibri")
 
     #Entry box for title of project
-    title = Entry(mainWin, font=('Arial', 30), width=20)
+    title = Entry(mainWin, font=('Arial', 30), width=20, bg='#0E9C7B')
     title.insert(0, 'Enter title')
-    title.pack()
+    title.place(relx=0.3, rely=0.01)
     def clear_entry(event):
         title.delete(0, END)
     title.bind('<FocusIn>', clear_entry)
 
     #Account title label
-    accLabel = Label(mainWin, text='Account title', font=('Arial', 20))
-    accLabel.pack()
+    accLabel = Label(mainWin, text='Account title', font=('Arial', 20, 'bold'), bg='#FC4C4F')
+    accLabel.place(relx=0.01, rely=0.12)
     
     #Account title
-    accTitle = Entry(mainWin, font=('Arial', 30), width=20)
-    accTitle.pack()
+    accTitle = Entry(mainWin, font=('Arial', 30), width=20, bg='#0E9C7B')
+    accTitle.place(relx=0.2, rely=0.11)
 
     #Transaction Label
-    transLabel = Label(mainWin, text='Choose Transaction', font=('Arial', 20))
-    transLabel.pack()
+    transLabel = Label(mainWin, text='Choose Transaction', font=('Arial', 20, 'bold'), bg='#FC4C4F')
+    transLabel.place(relx=0.01, rely=0.21)
 
     #Transaction Menu
     transac = Menu(mainWin, font=('Arial', 20))
     
     #Button to show preview
-    preview = Button(mainWin, text='Show Preview', font=('Arial', 15))
+    preview = Button(mainWin, text='Show Preview', font=('Arial', 15), bg='black', fg='#FC4C4F')
     preview.place(relx=0.98, rely=0.98, anchor='se')
 
     mainWin.geometry("900x600")
