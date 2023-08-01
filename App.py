@@ -60,28 +60,35 @@ def nextB():
     #Entry box for title of project
     title = Entry(mainWin, font=('Arial', 30), width=20, bg='#0E9C7B')
     title.insert(0, 'Enter title')
-    title.place(relx=0.3, rely=0.01)
+    title.grid(row=1, column=2, columnspan=2, padx=(10, 10), pady=(10, 10))
     def clear_entry(event):
         title.delete(0, END)
     title.bind('<FocusIn>', clear_entry)
 
     #Account title label
     accLabel = Label(mainWin, text='Account title', font=('Arial', 20, 'bold'), bg='#FC4C4F')
-    accLabel.place(relx=0.01, rely=0.12)
+    accLabel.grid(row=2, column=1)
     
     #Account title
     accTitle = Entry(mainWin, font=('Arial', 30), width=20, bg='#0E9C7B')
-    accTitle.place(relx=0.2, rely=0.11)
+    accTitle.grid(row=2, column=2, columnspan=2, padx=(10, 10), pady=(10, 10))
 
     #Transaction Label
     transLabel = Label(mainWin, text='Choose Transaction', font=('Arial', 20, 'bold'), bg='#FC4C4F')
-    transLabel.place(relx=0.01, rely=0.21)
+    transLabel.grid(row=3, column=1)
 
+    #Frame to add the transactio menu
+    #tFrame = Frame(mainWin, width=200, height=50)
+    #tFrame.grid(row=3, column=2)
+    
     #Transaction Menu
-    transac = Menu(mainWin, font=('Arial', 20))  # Example: Create a Transaction menu, add commands, and associate with the mainWin window.
-    transac.add_command(label="Transaction 1")
-    transac.add_command(label="Transaction 2")
-    transac.add_command(label="Transaction 3")
+    tMenu = Menu(mainWin, font=('Arial', 20))  # Example: Create a Transaction menu, add commands, and associate with the mainWin window.
+    tMenu.add_command(label="Transaction 1")
+    tMenu.add_command(label="Transaction 2")
+    tMenu.add_command(label="Transaction 3")
+    
+    cFrame = Frame(mainWin, width=200, height=200)
+    cFrame.grid(row=2, column=4, rowspan=3, columnspan=2)
     
     #Button to show preview
     preview = Button(mainWin, text='Show Preview', font=('Arial', 15), bg='black', fg='#FC4C4F')
