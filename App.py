@@ -66,11 +66,11 @@ def nextB():
     ledLabel.grid(row=0, column=0)
 
     ledEntry = Entry(accFrame, font=('Arial', 20))
-    ledEntry.grid(row=0, column=1)
+    ledEntry.grid(row=1, column=0)
 
     #Account title
     accLabel = Label(accFrame, text='Account title', font=('Arial', 20))
-    accLabel.grid(row=1, column=0)
+    accLabel.grid(row=0, column=1)
 
     accEntry = Entry(accFrame, font=('Arial', 20))
     accEntry.grid(row=1, column=1)
