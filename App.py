@@ -106,6 +106,13 @@ def nextB():
                                       "2050"], font=('Arial', 20), width=8)
     year.grid(row=1, column=2, padx=(1, 5), pady=5)
 
+    #Transaction
+    tLabel = Label(tFrame, text='Select Transaction', font=('Arial', 20))
+    tLabel.grid(row=0, column=0)
+
+    transac = ttk.Combobox(tFrame, values=['Trans 1', 'Trans 2', 'Trans 3'], font=('Arial', 20), width=20)
+    transac.grid(row=1, column=0)
+    
     #Button to show preview
     preview = Button(mainWin, text='Show Preview', font=('Arial', 20), bg='black', fg='#FC4C4F')
     preview.place(relx=0.98, rely=0.98, anchor='se')
