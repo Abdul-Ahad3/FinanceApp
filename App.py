@@ -61,19 +61,7 @@ def nextB():
     accFrame = Frame(mainWin)
     accFrame.grid(row=0, column=0)
 
-    #Ledger title
-    ledLabel = Label(accFrame, text='Ledger title', font=('Arial', 20))
-    ledLabel.grid(row=0, column=0)
-
-    ledEntry = Entry(accFrame, font=('Arial', 20))
-    ledEntry.grid(row=0, column=1)
-
-    #Account title
-    accLabel = Label(accFrame, text='Account title', font=('Arial', 20))
-    accLabel.grid(row=1, column=0)
-
-    accEntry = Entry(accFrame, font=('Arial', 20))
-    accEntry.grid(row=1, column=1)
+    
 
     #Button to show preview
     preview = Button(mainWin, text='Show Preview', font=('Arial', 15), bg='black', fg='#FC4C4F')
