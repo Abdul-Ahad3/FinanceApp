@@ -2,14 +2,13 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import colorchooser
 from tkinter import filedialog
-import calendar
 import os
 
 #Code for the main window (after next button is pressed)
 def nextB():
     #Function for opening a new file
     def newP():
-        file = open("C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\file.txt", 'x')
+        file = open("C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\file.txt", 'x')
 
     #Function for opening an already existing file
     def Open():
