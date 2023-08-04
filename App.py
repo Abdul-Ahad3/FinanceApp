@@ -23,6 +23,14 @@ def nextB():
     def bGround():
         mainWin.config(bg=colorchooser.askcolor()[1])
     
+    def prevShow():
+        ledger = ledEntry.get()
+        account = accEntry.get()
+        date = [day.get(), mon.get(), year.get()]
+        print(ledger +" " + account)
+        for x in date:
+            print(x)
+
     #Main window
     mainWin = Tk()
 
@@ -114,7 +122,7 @@ def nextB():
     transac.grid(row=1, column=0)
     
     #Button to show preview
-    preview = Button(mainWin, text='Show Preview', font=('Arial', 20), bg='black', fg='#FC4C4F')
+    preview = Button(mainWin, text='Show Preview', font=('Arial', 20), bg='black', fg='#FC4C4F', command=prevShow)
     preview.place(relx=0.98, rely=0.98, anchor='se')
 
     mainWin.geometry("1120x600")
