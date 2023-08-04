@@ -118,8 +118,8 @@ def nextB():
     tLabel = Label(tFrame, text='Select Transaction', font=('Arial', 20))
     tLabel.grid(row=0, column=0)
 
-    transac = ttk.Combobox(tFrame, values=['Trans 1', 'Trans 2', 'Trans 3'], font=('Arial', 20), width=20)
-    transac.grid(row=1, column=0)
+    transac = ttk.Combobox(tFrame, values=['Cash Recieved', 'Online recieved', 'Cash payment', 'Online Payment'], font=('Arial', 20), width=20)
+    transac.grid(row=0, column=1)
     
     #Button to show preview
     preview = Button(mainWin, text='Show Preview', font=('Arial', 20), bg='black', fg='#FC4C4F', command=prevShow)
