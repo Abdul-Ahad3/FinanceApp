@@ -26,9 +26,9 @@ def nextB():
         ledger = ledEntry.get()
         account = accEntry.get()
         date = [day.get(), mon.get(), year.get()]
-        print(ledger +" " + account)
-        for x in date:
-            print(x)
+        file = open("C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\file.txt", 'w')
+        file.write(">>>>>>>>>>>>>>>>>> " + ledEntry.get() + " <<<<<<<<<<<<<<<<<<\n")
+        file.write(day.get() + " " + mon.get() + ", " + year.get() + " -- " + accEntry.get() + " -- " + transac.get())
 
     #Main window
     mainWin = Tk()
