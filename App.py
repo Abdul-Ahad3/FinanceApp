@@ -70,7 +70,7 @@ def nextB():
     #Frame to hold the account details
     accFrame = Frame(mainWin,bg='#FC4C4F', width=mainWin.winfo_width(), height=mainWin.winfo_height()/3)
     accFrame.grid(row=0, column=0)
-    mainWin.grid_rowconfigure(0, weight=1)
+    #mainWin.grid_rowconfigure(0, weight=1)
 
     #Date frame
     dFrame = Frame(accFrame, bg='#FC4C4F')
@@ -79,7 +79,12 @@ def nextB():
     #Transactions frame
     tFrame = Frame(mainWin, bg='#FC4C4F', width=mainWin.winfo_width(), height=mainWin.winfo_height()/3)
     tFrame.grid(row=1, column=0)
-    mainWin.grid_rowconfigure(1, weight=1)
+    #mainWin.grid_rowconfigure(1, weight=1)
+
+    #Buttons frame
+    bFrame = Frame(mainWin, bg='#FC4C4F', width=mainWin.winfo_width(), height=mainWin.winfo_height()/3)
+    bFrame.grid(row=2, column=0)
+    mainWin.grid_rowconfigure(2, weight=1)
 
     mainWin.grid_columnconfigure(0, weight=1)
 
@@ -135,9 +140,13 @@ def nextB():
     cash = Entry(tFrame, font=('Arial', 20), width=20)
     cash.grid(row=1, column=1, padx=5, pady=5)
     
+    #Button to add the info to a text file
+    add = Button(bFrame, text='Add', font=('Arial', 20), bg='black', fg='#FC4C4F')
+    add.grid(row=0, column=0)
+
     #Button to show preview
-    preview = Button(mainWin, text='Show Preview', font=('Arial', 20), bg='black', fg='#FC4C4F', command=prevShow)
-    preview.place(relx=0.98, rely=0.98, anchor='se')
+    preview = Button(bFrame, text='Show Preview', font=('Arial', 20), bg='black', fg='#FC4C4F', command=prevShow)
+    preview.grid(row=0, column=1)
 
     mainWin.geometry("1130x600")
     mainWin.config(background="#FC4C4F", menu=menuBar)
