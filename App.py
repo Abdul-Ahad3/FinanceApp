@@ -119,14 +119,14 @@ def nextB():
 
     transac = ttk.Combobox(tFrame, values=['Cash Recieved', 'Online recieved', 'Cash payment', 'Online Payment'], 
                            font=('Arial', 20), width=20)
-    transac.grid(row=0, column=1, padx=5, pady=5)
+    transac.grid(row=1, column=0, padx=5, pady=5)
 
     #Amount of Cash/Payment
-    cashLabel = Label(tFrame, text='Amount(Cash)', font=('Arial', 20))
-    cashLabel.grid(row=0, column=2, padx=5, pady=5)
+    cashLabel = Label(tFrame, text='Amount(Cash)', font=('Arial', 20), bg='#FC4C4F')
+    cashLabel.grid(row=0, column=1, padx=5, pady=5)
 
     cash = Entry(tFrame, font=('Arial', 20), width=20)
-    cash.grid(row=0, column=3, padx=5, pady=5)
+    cash.grid(row=1, column=1, padx=5, pady=5)
     
     #Button to show preview
     preview = Button(mainWin, text='Show Preview', font=('Arial', 20), bg='black', fg='#FC4C4F', command=prevShow)
