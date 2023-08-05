@@ -23,12 +23,15 @@ def nextB():
         mainWin.config(bg=colorchooser.askcolor()[1])
     
     def prevShow():
-        ledger = ledEntry.get()
-        account = accEntry.get()
-        date = [day.get(), mon.get(), year.get()]
+        total=0
+        amount = int(cash.get())
         file = open("C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\file.txt", 'w')
         file.write(">>>>>>>>>>>>>>>>>> " + ledEntry.get() + " <<<<<<<<<<<<<<<<<<\n")
-        file.write(day.get() + " " + mon.get() + ", " + year.get() + " -- " + accEntry.get() + " -- " + transac.get())
+        file.write("|\t Date \t|\t Account title \t|\t Transaction \t|\t Cash \t|\n---------------------------------------------------------------------\n")
+        file.write(day.get() + " " + mon.get() + ", " + year.get() + " | " + accEntry.get() + " | " + transac.get() + " |  Rs." + cash.get() + "\n")
+        file.write("---------------------------------------\n")
+        total = total + amount
+        file.write("Total\t\t\t\t\t\t\t\t\t\t\t\t| Rs." + str(total))
 
     #Main window
     mainWin = Tk()
@@ -65,16 +68,20 @@ def nextB():
     fontMenu.add_command(label="Calibri")
 
     #Frame to hold the account details
-    accFrame = Frame(mainWin,bg='#FC4C4F')
+    accFrame = Frame(mainWin,bg='#FC4C4F', width=mainWin.winfo_width(), height=mainWin.winfo_height()/3)
     accFrame.grid(row=0, column=0)
+    mainWin.grid_rowconfigure(0, weight=1)
 
     #Date frame
     dFrame = Frame(accFrame, bg='#FC4C4F')
     dFrame.grid(row=0, column=2, rowspan=2)
 
     #Transactions frame
-    tFrame = Frame(mainWin, bg='#FC4C4F')
+    tFrame = Frame(mainWin, bg='#FC4C4F', width=mainWin.winfo_width(), height=mainWin.winfo_height()/3)
     tFrame.grid(row=1, column=0)
+    mainWin.grid_rowconfigure(1, weight=1)
+
+    mainWin.grid_columnconfigure(0, weight=1)
 
     #Ledger title
     ledLabel = Label(accFrame, text='Ledger title', font=('Arial', 20), bg='#FC4C4F')
