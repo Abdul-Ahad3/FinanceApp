@@ -73,7 +73,7 @@ def nextB():
     dFrame.grid(row=0, column=2, rowspan=2)
 
     #Transactions frame
-    tFrame = Frame(mainWin)
+    tFrame = Frame(mainWin, bg='#FC4C4F')
     tFrame.grid(row=1, column=0)
 
     #Ledger title
@@ -114,17 +114,18 @@ def nextB():
     year.grid(row=1, column=2, padx=(1, 5), pady=5)
 
     #Transaction
-    tLabel = Label(tFrame, text='Select Transaction', font=('Arial', 20))
-    tLabel.grid(row=0, column=0)
+    tLabel = Label(tFrame, text='Select Transaction', font=('Arial', 20), bg='#FC4C4F')
+    tLabel.grid(row=0, column=0, padx=5, pady=5)
 
-    transac = ttk.Combobox(tFrame, values=['Cash Recieved', 'Online recieved', 'Cash payment', 'Online Payment'], font=('Arial', 20), width=20)
-    transac.grid(row=0, column=1)
+    transac = ttk.Combobox(tFrame, values=['Cash Recieved', 'Online recieved', 'Cash payment', 'Online Payment'], 
+                           font=('Arial', 20), width=20)
+    transac.grid(row=0, column=1, padx=5, pady=5)
     
     #Button to show preview
     preview = Button(mainWin, text='Show Preview', font=('Arial', 20), bg='black', fg='#FC4C4F', command=prevShow)
     preview.place(relx=0.98, rely=0.98, anchor='se')
 
-    mainWin.geometry("1120x600")
+    mainWin.geometry("1130x600")
     mainWin.config(background="#FC4C4F", menu=menuBar)
     welcome.destroy()
 
