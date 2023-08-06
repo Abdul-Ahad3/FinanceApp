@@ -23,28 +23,23 @@ def nextB():
         mainWin.config(bg=colorchooser.askcolor()[1])
     
     accInfo = [["Date", "Account title", "Transaction", "Amount(Cash)"]]
+    total = 0
     def addInfo():
-        print("")
-        x=0
-        x+=1
-        accInfo.append([day.get() + " " + mon.get() + ", " + year.get(), accEntry.get(), transac.get(), cash.get()])
+        total = total + int(cash.get())
+
+        accInfo.append([day.get() + "/" + mon.get() + "/" + year.get(), accEntry.get(), transac.get(), cash.get()])
+        
         file = open("C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\file.txt", 'w')
+        file.write(">>>>>>>>>>>>>>>>>> " + ledEntry.get() + " <<<<<<<<<<<<<<<<<<\n")
         for a in accInfo:
             for b in a:
-                file.write("|\t" + b + "\t")
+                file.write("|\t" + b + "\t ")
             file.write("|\n---------------------------------------------------------------------\n")
+        file.write("Total--------------------------------------------|\t\t" + str(total) + "\t\t|")
             
 
     def prevShow():
-        total=0
-        amount = int(cash.get())
-        file = open("C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\file.txt", 'w')
-        file.write(">>>>>>>>>>>>>>>>>> " + ledEntry.get() + " <<<<<<<<<<<<<<<<<<\n")
-        file.write("|\t Date \t|\t Account title \t|\t Transaction \t|\t Cash \t|\n---------------------------------------------------------------------\n")
-        file.write(day.get() + " " + mon.get() + ", " + year.get() + " | " + accEntry.get() + " | " + transac.get() + " |  Rs." + cash.get() + "\n")
-        file.write("---------------------------------------\n")
-        total = total + amount
-        file.write("Total\t\t\t\t\t\t\t\t\t\t\t\t| Rs." + str(total))
+        print("")
 
     #Main window
     mainWin = Tk()
@@ -125,9 +120,8 @@ def nextB():
                                       "31"], font=('Arial', 20), width=5)
     day.grid(row=1, column=0, padx=(5, 1), pady=5)
 
-    mon = ttk.Combobox(dFrame, value=["January","February","March", "April", 
-                                      "May","June","July","August",
-                                      "September","October","November","December"], font=('Arial', 20), width=15)
+    mon = ttk.Combobox(dFrame, value=["01","02","03","04","05","06","07","08","09","10",
+                                      "11","12"], font=('Arial', 20), width=10)
     mon.grid(row=1, column=1, pady=5)
 
     year = ttk.Combobox(dFrame, value=["2000","2001","2002","2003","2004","2005","2006","2007","2008","2009",
