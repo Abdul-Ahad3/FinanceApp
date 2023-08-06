@@ -22,6 +22,19 @@ def nextB():
     def bGround():
         mainWin.config(bg=colorchooser.askcolor()[1])
     
+    accInfo = [["Date", "Account title", "Transaction", "Amount(Cash)"]]
+    def addInfo():
+        print("")
+        x=0
+        x+=1
+        accInfo.append([day.get() + " " + mon.get() + ", " + year.get(), accEntry.get(), transac.get(), cash.get()])
+        file = open("C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\file.txt", 'w')
+        for a in accInfo:
+            for b in a:
+                file.write("|\t" + b + "\t")
+            file.write("|\n---------------------------------------------------------------------\n")
+            
+
     def prevShow():
         total=0
         amount = int(cash.get())
@@ -70,7 +83,7 @@ def nextB():
     #Frame to hold the account details
     accFrame = Frame(mainWin,bg='#FC4C4F', width=mainWin.winfo_width(), height=mainWin.winfo_height()/3)
     accFrame.grid(row=0, column=0)
-    #mainWin.grid_rowconfigure(0, weight=1)
+    mainWin.grid_rowconfigure(0, weight=1)
 
     #Date frame
     dFrame = Frame(accFrame, bg='#FC4C4F')
@@ -79,7 +92,7 @@ def nextB():
     #Transactions frame
     tFrame = Frame(mainWin, bg='#FC4C4F', width=mainWin.winfo_width(), height=mainWin.winfo_height()/3)
     tFrame.grid(row=1, column=0)
-    #mainWin.grid_rowconfigure(1, weight=1)
+    mainWin.grid_rowconfigure(1, weight=1)
 
     #Buttons frame
     bFrame = Frame(mainWin, bg='#FC4C4F', width=mainWin.winfo_width(), height=mainWin.winfo_height()/3)
@@ -106,7 +119,7 @@ def nextB():
     dateLabel = Label(dFrame, text='Date', font=('Arial', 20), bg='#FC4C4F')
     dateLabel.grid(row=0, column=0, columnspan=3, padx=5, pady=5)
 
-    day = ttk.Combobox(dFrame, value=["0","1","2","3","4","5","6","7","8","9","10",
+    day = ttk.Combobox(dFrame, value=["1","2","3","4","5","6","7","8","9","10",
                                       "11","12","13","14","15","16","17","18","19","20",
                                       "21","22","23","24","25","26","27","28","29","30",
                                       "31"], font=('Arial', 20), width=5)
@@ -141,12 +154,12 @@ def nextB():
     cash.grid(row=1, column=1, padx=5, pady=5)
     
     #Button to add the info to a text file
-    add = Button(bFrame, text='Add', font=('Arial', 20), bg='black', fg='#FC4C4F')
-    add.grid(row=0, column=0)
+    add = Button(bFrame, text='Add', font=('Arial', 20), bg='black', fg='#FC4C4F', width=12, command=addInfo)
+    add.grid(row=0, column=0, padx=(0, 5))
 
     #Button to show preview
-    preview = Button(bFrame, text='Show Preview', font=('Arial', 20), bg='black', fg='#FC4C4F', command=prevShow)
-    preview.grid(row=0, column=1)
+    preview = Button(bFrame, text='Show Preview', font=('Arial', 20), bg='black', fg='#FC4C4F', width=12, command=prevShow)
+    preview.grid(row=0, column=1, padx=(5, 0))
 
     mainWin.geometry("1130x600")
     mainWin.config(background="#FC4C4F", menu=menuBar)
