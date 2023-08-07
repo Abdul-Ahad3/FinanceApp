@@ -38,7 +38,13 @@ def nexB():
     fontMenu.add_command(label="Calibri")
 
     button = Button(ledgerWin, text='+ Add Ledger', font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command =nextB)
-    button.place(relx=0.3, rely=0.2)
+    button.grid(row=0, column=1)
+
+    x = 1
+    if(len(ledEntry.get()) != 0):
+        x+=1
+        widget = Button(ledgerWin, text=ledEntry.get(), font=('Arial', 20), bg='black', fg='#FC4C4F', width=30)
+        widget.grid(row=1, column=x)
     
     ledgerWin.geometry("1100x600")
     ledgerWin.config(background='#FC4C4F', menu=menuBar)
@@ -80,7 +86,7 @@ def nextB():
         accInfo.append([day.get() + "/" + mon.get() + "/" + year.get(), accEntry.get(), transac.get(), cash.get()])
         
         new_file_path = "C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\" + ledEntry.get() + ".txt"
-        file = open(new_file_path, 'x')
+        file = open(new_file_path, 'w')
         for a in accInfo:
             for b in a:
                 file.write("|\t" + b + "\t ")
@@ -148,6 +154,7 @@ def nextB():
     ledLabel = Label(accFrame, text='Ledger title', font=('Arial', 20), bg='#FC4C4F')
     ledLabel.grid(row=0, column=0, padx=5, pady=5)
 
+    global ledEntry
     ledEntry = Entry(accFrame, font=('Arial', 20))
     ledEntry.grid(row=1, column=0, padx=5, pady=5)
 
