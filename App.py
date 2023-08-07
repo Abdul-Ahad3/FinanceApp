@@ -5,33 +5,15 @@ from tkinter import filedialog
 import os
 
 def nexB():
-    mainWin = Tk()
-
-    #Function for opening a new file
-    def newP():
-        file = open("C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\file.txt", 'x')
-
-    #Function for opening an already existing file
-    def Open():
-        os.startfile(filedialog.askopenfilename())
-
-    #Function for exiting the window
-    def exit():
-        mainWin.destroy()
-
-    #Function for changing background color
-    def bGround():
-        mainWin.config(bg=colorchooser.askcolor()[1])
-    
-
-    menuBar = Menu(mainWin, font=("Arial", 30)) #Main menu bar
+    ledgerWin = Tk()
+    menuBar = Menu(ledgerWin, font=("Arial", 30)) #Main menu bar
     i=10
 
     #File drop down menu
     fileMenu = Menu(menuBar, tearoff=0, font=("Arial", 10))
     menuBar.add_cascade(label="File", menu=fileMenu)
-    fileMenu.add_command(label="New", command=newP)
-    fileMenu.add_command(label="Open", command=Open)
+    fileMenu.add_command(label="New")
+    fileMenu.add_command(label="Open")
     fileMenu.add_command(label="Save")#, command=save)
     fileMenu.add_command(label="Save As")#, command=SaveAs)
     fileMenu.add_command(label="Exit", command=exit)
@@ -39,7 +21,7 @@ def nexB():
     #Edit drop down menu
     editMenu = Menu(menuBar, tearoff=0, font=("Arial", 10))
     menuBar.add_cascade(label="Edit", menu=editMenu)
-    editMenu.add_command(label="Background", command=bGround)
+    editMenu.add_command(label="Background")
     
     #Font Size menu in Edit Menu
     fsMenu = Menu(editMenu, tearoff=0, font=('Arial', 10))
@@ -55,18 +37,19 @@ def nexB():
     fontMenu.add_command(label="Times New Roman")
     fontMenu.add_command(label="Calibri")
 
-
-    button = Button(mainWin, text='+ Add Ledger', font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command =nextB)
+    button = Button(ledgerWin, text='+ Add Ledger', font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command =nextB)
     button.place(relx=0.3, rely=0.2)
     
-    mainWin.geometry("1100x600")
-    mainWin.config(background='#FC4C4F', menu=menuBar)
+    ledgerWin.geometry("1100x600")
+    ledgerWin.config(background='#FC4C4F', menu=menuBar)
     welcome.destroy()
-    mainWin.mainloop()
+    ledgerWin.mainloop()
 
 
 #Code for the main window (after next button is pressed)
 def nextB():
+    mainWin = Tk()
+
     #Function for opening a new file
     def newP():
         file = open("C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\file.txt", 'x')
@@ -75,6 +58,11 @@ def nextB():
     def Open():
         os.startfile(filedialog.askopenfilename())
 
+    #Function for saving file
+    def save():
+        new_file_path = "C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\" + ledEntry.get() + ".txt"
+        file = open(new_file_path, 'x')
+    
     #Function for exiting the window
     def exit():
         mainWin.destroy()
@@ -83,15 +71,16 @@ def nextB():
     def bGround():
         mainWin.config(bg=colorchooser.askcolor()[1])
     
-    accInfo = [["Date", "Account title", "Transaction", "Amount(Cash)"]]
+    accInfo = [["Date", "Account title", "Transaction", "Amount(Rs.)"]]
     total = 0
     def addInfo():
+        total=0
         total = total + int(cash.get())
 
         accInfo.append([day.get() + "/" + mon.get() + "/" + year.get(), accEntry.get(), transac.get(), cash.get()])
         
-        file = open("C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\file.txt", 'w')
-        file.write(">>>>>>>>>>>>>>>>>> " + ledEntry.get() + " <<<<<<<<<<<<<<<<<<\n")
+        new_file_path = "C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\" + ledEntry.get() + ".txt"
+        file = open(new_file_path, 'x')
         for a in accInfo:
             for b in a:
                 file.write("|\t" + b + "\t ")
@@ -102,10 +91,8 @@ def nextB():
     def prevShow():
         print("")
 
-    #Main window
-    mainWin = Tk()
-
-    menuBar = Menu(mainWin, font=("Arial", 30)) #Main menu bar
+    #Main menu bar
+    menuBar = Menu(mainWin, font=("Arial", 30))
     i=10
 
     #File drop down menu
@@ -113,7 +100,7 @@ def nextB():
     menuBar.add_cascade(label="File", menu=fileMenu)
     fileMenu.add_command(label="New", command=newP)
     fileMenu.add_command(label="Open", command=Open)
-    fileMenu.add_command(label="Save")#, command=save)
+    fileMenu.add_command(label="Save", command=save)
     fileMenu.add_command(label="Save As")#, command=SaveAs)
     fileMenu.add_command(label="Exit", command=exit)
 
