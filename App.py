@@ -37,6 +37,10 @@ def nexB():
     fontMenu.add_command(label="Times New Roman")
     fontMenu.add_command(label="Calibri")
 
+    global ledEntry
+    ledEntry = Entry(ledgerWin, font=('Arial', 20))
+    ledEntry.grid(row=1, column=0, padx=5, pady=5)
+
     button = Button(ledgerWin, text='+ Add Ledger', font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command =nextB)
     button.grid(row=0, column=1)
 
@@ -149,21 +153,13 @@ def nextB():
     mainWin.grid_rowconfigure(2, weight=1)
 
     mainWin.grid_columnconfigure(0, weight=1)
-
-    #Ledger title
-    ledLabel = Label(accFrame, text='Ledger title', font=('Arial', 20), bg='#FC4C4F')
-    ledLabel.grid(row=0, column=0, padx=5, pady=5)
-
-    global ledEntry
-    ledEntry = Entry(accFrame, font=('Arial', 20))
-    ledEntry.grid(row=1, column=0, padx=5, pady=5)
-
+    
     #Account title
     accLabel = Label(accFrame, text='Account title', font=('Arial', 20), bg='#FC4C4F')
-    accLabel.grid(row=0, column=1, padx=5, pady=5)
+    accLabel.grid(row=0, column=0, padx=5, pady=5)
 
     accEntry = Entry(accFrame, font=('Arial', 20))
-    accEntry.grid(row=1, column=1, padx=5, pady=5)
+    accEntry.grid(row=1, column=0, padx=5, pady=5)
 
     #Date
     dateLabel = Label(dFrame, text='Date', font=('Arial', 20), bg='#FC4C4F')
