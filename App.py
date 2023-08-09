@@ -37,12 +37,15 @@ def nexB():
     fontMenu.add_command(label="Times New Roman")
     fontMenu.add_command(label="Calibri")
 
+    emptyLabel = Label(ledgerWin, text="", font=("Arial", 20), width=20, bg='#FC4C4F')
+    emptyLabel.grid(row=0, column=0)
+
     global ledEntry
-    ledEntry = Entry(ledgerWin, font=('Arial', 20))
-    ledEntry.grid(row=1, column=0, padx=5, pady=5)
+    ledEntry = Entry(ledgerWin, font=('Arial', 30), width=22)
+    ledEntry.grid(row=0, column=1, padx=5, pady=5)
 
     button = Button(ledgerWin, text='+ Add Ledger', font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command =nextB)
-    button.grid(row=0, column=1)
+    button.grid(row=1, column=1, padx=5, pady=5)
 
     x = 1
     if(len(ledEntry.get()) != 0):
