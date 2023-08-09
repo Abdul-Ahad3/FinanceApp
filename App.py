@@ -9,7 +9,8 @@ def nexB():
     def openLedger():
         print("")
         new_file_path = "C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\" + ledEntry.get() + ".txt"
-        file = open(new_file_path, 'x')
+        file = open(new_file_path, 'w')
+        nextB()
     
     global row
     row=1
@@ -156,7 +157,7 @@ def nextB():
 
     #Date frame
     dFrame = Frame(accFrame, bg='#FC4C4F')
-    dFrame.grid(row=0, column=2, rowspan=2)
+    dFrame.grid(row=1, column=1, rowspan=2)
 
     #Transactions frame
     tFrame = Frame(mainWin, bg='#FC4C4F', width=mainWin.winfo_width(), height=mainWin.winfo_height()/3)
@@ -170,12 +171,16 @@ def nextB():
 
     mainWin.grid_columnconfigure(0, weight=1)
     
+    #Ledger name as title
+    title = Label(accFrame, text=ledEntry.get(), font=('Arial', 40, 'bold'), bg='#FC4C4F')
+    title.grid(row=0, column=0, columnspan=2, padx=5, pady=(5, 10))
+    
     #Account title
     accLabel = Label(accFrame, text='Account title', font=('Arial', 20), bg='#FC4C4F')
-    accLabel.grid(row=0, column=0, padx=5, pady=5)
+    accLabel.grid(row=1, column=0, padx=5, pady=5)
 
     accEntry = Entry(accFrame, font=('Arial', 20))
-    accEntry.grid(row=1, column=0, padx=5, pady=5)
+    accEntry.grid(row=2, column=0, padx=5, pady=5)
 
     #Date
     dateLabel = Label(dFrame, text='Date', font=('Arial', 20), bg='#FC4C4F')
