@@ -2,9 +2,17 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import colorchooser
 from tkinter import filedialog
+from tkinter import messagebox
 import os
 
 def nexB():
+    #Function to check if the ledger entry box is empty or not
+    def checkLedger():
+        if(ledEntry.index("end") != 0):
+            nextB()
+        else:
+            messagebox.showerror(parent=ledgerWin, title='Error', message='Please enter a valid Ledger name')
+    
     ledgerWin = Tk()
     menuBar = Menu(ledgerWin, font=("Arial", 30)) #Main menu bar
     i=10
@@ -44,7 +52,7 @@ def nexB():
     ledEntry = Entry(ledgerWin, font=('Arial', 30), width=22)
     ledEntry.grid(row=0, column=1, padx=5, pady=5)
 
-    button = Button(ledgerWin, text='+ Add Ledger', font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command =nextB)
+    button = Button(ledgerWin, text='+ Add Ledger', font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command =checkLedger)
     button.grid(row=1, column=1, padx=5, pady=5)
 
     x = 1
