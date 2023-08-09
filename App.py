@@ -6,10 +6,17 @@ from tkinter import messagebox
 import os
 
 def nexB():
+    
+    global row
+    row=1
     #Function to check if the ledger entry box is empty or not
     def checkLedger():
+        global row
+        row+=1
         if(ledEntry.index("end") != 0):
             nextB()
+            x = Button(ledgerWin, text=ledEntry.get(), font=('Arial', 20), bg='black', fg='#FC4C4F', width=30)
+            x.grid(row=row, column=1, padx=5, pady=5)
         else:
             messagebox.showerror(parent=ledgerWin, title='Error', message='Please enter a valid Ledger name')
     
@@ -54,12 +61,6 @@ def nexB():
 
     button = Button(ledgerWin, text='+ Add Ledger', font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command =checkLedger)
     button.grid(row=1, column=1, padx=5, pady=5)
-
-    x = 1
-    if(len(ledEntry.get()) != 0):
-        x+=1
-        widget = Button(ledgerWin, text=ledEntry.get(), font=('Arial', 20), bg='black', fg='#FC4C4F', width=30)
-        widget.grid(row=1, column=x)
     
     ledgerWin.geometry("1100x600")
     ledgerWin.config(background='#FC4C4F', menu=menuBar)
