@@ -6,6 +6,10 @@ from tkinter import messagebox
 import os
 
 def nexB():
+    def openLedger():
+        print("")
+        new_file_path = "C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\" + ledEntry.get() + ".txt"
+        file = open(new_file_path, 'x')
     
     global row
     row=1
@@ -15,7 +19,7 @@ def nexB():
         row+=1
         if(ledEntry.index("end") != 0):
             nextB()
-            x = Button(ledgerWin, text=ledEntry.get(), font=('Arial', 20), bg='black', fg='#FC4C4F', width=30)
+            x = Button(ledgerWin, text=ledEntry.get(), font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command=openLedger)
             x.grid(row=row, column=1, padx=5, pady=5)
         else:
             messagebox.showerror(parent=ledgerWin, title='Error', message='Please enter a valid Ledger name')
