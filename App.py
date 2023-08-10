@@ -58,9 +58,6 @@ def nexB():
     fontMenu.add_command(label="Times New Roman")
     fontMenu.add_command(label="Calibri")
 
-    emptyLabel = Label(ledgerWin, text="", font=("Arial", 20), width=20, bg='#FC4C4F')
-    emptyLabel.grid(row=0, column=0)
-
     global ledEntry
     ledEntry = Entry(ledgerWin, font=('Arial', 30), width=22)
     ledEntry.grid(row=0, column=1, padx=5, pady=5)
@@ -68,7 +65,7 @@ def nexB():
     button = Button(ledgerWin, text='+ Add Ledger', font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command =checkLedger)
     button.grid(row=1, column=1, padx=5, pady=5)
     
-    ledgerWin.geometry("1100x600")
+    ledgerWin.geometry("500x600")
     ledgerWin.config(background='#FC4C4F', menu=menuBar)
     welcome.destroy()
     ledgerWin.mainloop()
