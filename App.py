@@ -100,9 +100,10 @@ def nextB():
         mainWin.config(bg=colorchooser.askcolor()[1])
     
     accInfo = [["Date", "Account title", "Transaction", "Amount(Rs.)"]]
-    total = 0
+    global total
+    total=0
     def addInfo():
-        total=0
+        global total
         total = total + int(cash.get())
 
         accInfo.append([day.get() + "/" + mon.get() + "/" + year.get(), accEntry.get(), transac.get(), cash.get()])
