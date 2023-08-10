@@ -14,7 +14,7 @@ def nexB():
         nextB()
     
     global row
-    row=1
+    row=2
     #Function to check if the ledger entry box is empty or not
     def checkLedger():
         global row
@@ -58,12 +58,22 @@ def nexB():
     fontMenu.add_command(label="Times New Roman")
     fontMenu.add_command(label="Calibri")
 
+    #Total Available Cash
+    global tcEntry
+    tcEntry = Entry(ledgerWin, font=('Arial', 30), width=22)
+    tcEntry.insert(0, "Enter starting cash")
+    tcEntry.bind("<FocusIn>", lambda e: tcEntry.delete(0, "end"))
+    tcEntry.grid(row=0, column=0, padx=5, pady=5)
+    
+    #Ledger Title
     global ledEntry
     ledEntry = Entry(ledgerWin, font=('Arial', 30), width=22)
-    ledEntry.grid(row=0, column=1, padx=5, pady=5)
+    ledEntry.bind("<FocusIn>", lambda e: ledEntry.delete(0, "end"))
+    ledEntry.grid(row=1, column=0, padx=5, pady=5)
 
+    #Add Ledger Button
     button = Button(ledgerWin, text='+ Add Ledger', font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command =checkLedger)
-    button.grid(row=1, column=1, padx=5, pady=5)
+    button.grid(row=2, column=0, padx=5, pady=5)
     
     ledgerWin.geometry("500x600")
     ledgerWin.config(background='#FC4C4F', menu=menuBar)
@@ -98,7 +108,7 @@ def nextB():
     
     accInfo = [["Date", "Account title", "Transaction", "Amount(Rs.)"]]
     global total
-    total=0
+    total=int(tcEntry.get())
     def addInfo():
         global total
         #Condition to alter the calculation of total cash according to transaction type
