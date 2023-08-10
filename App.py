@@ -104,8 +104,13 @@ def nextB():
     total=0
     def addInfo():
         global total
-        total = total + int(cash.get())
-
+        #Condition to alter the calculation of total cash according to transaction type
+        if(transac.get() == 'Cash Recieved' or transac.get() == 'Online Recieved' or transac.get() == 'Loan Recieved' or transac.get() == 'Loan Taken'):
+            total = total + int(cash.get())
+        elif(transac.get() == 'Cash Payment' or transac.get() == 'Online Payment' or transac.get() == 'Loan Given' or transac.get() == 'Loan Paid'):
+            total = total - int(cash.get())
+        
+        
         accInfo.append([day.get() + "/" + mon.get() + "/" + year.get(), accEntry.get(), transac.get(), cash.get()])
         
         new_file_path = "C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\" + ledEntry.get() + ".txt"
@@ -210,8 +215,10 @@ def nextB():
     tLabel = Label(tFrame, text='Select Transaction', font=('Arial', 20), bg='#FC4C4F')
     tLabel.grid(row=0, column=0, padx=5, pady=5)
 
-    transac = ttk.Combobox(tFrame, values=['Cash Recieved', 'Online recieved', 'Cash payment', 'Online Payment'], 
-                           font=('Arial', 20), width=20)
+    transac = ttk.Combobox(tFrame, values=['Cash Recieved', 'Online Recieved', 'Cash Payment', 
+                                          'Online Payment', 'Loan Given', 'Loan Recieved',
+                                          'Loan Taken', 'Loan Paid'],
+                                          font=('Arial', 20), width=20)
     transac.grid(row=1, column=0, padx=5, pady=5)
 
     #Amount of Cash/Payment
