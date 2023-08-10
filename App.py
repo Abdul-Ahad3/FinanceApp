@@ -6,10 +6,11 @@ from tkinter import messagebox
 import os
 
 def nexB():
+    #Opens the ledger made already
     def openLedger():
-        print("")
         new_file_path = "C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\" + ledEntry.get() + ".txt"
         file = open(new_file_path, 'w')
+        file.write("\n")
         nextB()
     
     global row
@@ -34,8 +35,8 @@ def nexB():
     menuBar.add_cascade(label="File", menu=fileMenu)
     fileMenu.add_command(label="New")
     fileMenu.add_command(label="Open")
-    fileMenu.add_command(label="Save")#, command=save)
-    fileMenu.add_command(label="Save As")#, command=SaveAs)
+    fileMenu.add_command(label="Save")
+    fileMenu.add_command(label="Save As")
     fileMenu.add_command(label="Exit", command=exit)
 
     #Edit drop down menu
