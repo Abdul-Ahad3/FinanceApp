@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter as tk
 from tkinter import ttk
 from tkinter import colorchooser
 from tkinter import filedialog
@@ -117,7 +118,26 @@ def nextB():
         elif(transac.get() == 'Cash Payment' or transac.get() == 'Online Payment' or transac.get() == 'Loan Given' or transac.get() == 'Loan Paid'):
             total = total - int(cash.get())
         
-        
+        if(transac.get() == "Loan Recieved" or transac.get() == "Loan Taken" or transac.get() == "Loan Given" or transac.get() == "Loan Paid"):
+            if (messagebox.askyesno(message='Would you like to add a reminder for the loan?')):
+                loan = Tk()
+                #Label title
+                lLabel = Label(loan, text='Loan Title', font=('Arial', 20), bg='black', fg='#FC4C4F')
+                lLabel.grid(row=0, column=0, padx=5, pady=5)
+
+                lEntry = Entry(loan, font=('Arial', 20), bg='black', fg='#FC4C4F')
+                lEntry.grid(row=0, column=1, padx=5, pady=5)
+
+                #Label description
+                ldLabel = Label(loan, text='Loan Description(Optional)', font=('Arial', 20), bg='black', fg='#FC4C4F')
+                ldLabel.grid(row=1, column=0, padx=5, pady=5)
+
+                loandesc = Text(loan, font=('Arial', 20), height=4, width=20, bg='black', fg='#FC4C4F')
+                loandesc.grid(row=1, column=1, padx=5, pady=5)
+
+                loan.config(background="black")
+                loan.mainloop()
+
         accInfo.append([day.get() + "/" + mon.get() + "/" + year.get(), accEntry.get(), transac.get(), cash.get()])
         
         new_file_path = "C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\" + ledEntry.get() + ".txt"
