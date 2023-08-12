@@ -124,7 +124,7 @@ def nextB():
             if (messagebox.askyesno(message='Would you like to add a reminder for the loan?')):
                 pass
 
-        accInfo.append([day.get() + "/" + mon.get() + "/" + year.get(), accEntry.get(), transac.get(), cash.get()])
+        accInfo.append([dLabel.get(), transac.get(), cash.get()])
         
         new_file_path = "C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\" + ledEntry.get() + ".txt"
         file = open(new_file_path, 'w')
@@ -209,17 +209,20 @@ def nextB():
     calWin = Tk()
     def getDate():
         dLabel.config(text=calendar.get_date())
+        calWin.lift()
+        calWin.destroy()
 
-    calendar = Calendar(calWin, selectmode='day', year=2023, month=8, day=12, width=600, height=600)
+    #Calendar to get date
+    calendar = Calendar(calWin, selectmode='day', year=2023, month=8, day=12)
     calendar.pack()
     ok = Button(calWin, text='OK', command=getDate)
     ok.pack(side='bottom')
 
-    dLabel = Label(dFrame, font=('Arial', 15), bg='white', width=10)
-    dLabel.grid(row=1, column=0)
+    dLabel = Label(dFrame, font=('Arial', 20), bg='white', width=10)
+    dLabel.grid(row=1, column=0, padx=5, pady=5)
 
-    dateButton = Button(dFrame, text='Select Date', font=('Arial', 15), bg='black', fg='#FC4C4F')
-    dateButton.grid(row=1, column=1)
+    dateButton = Button(dFrame, text='Select Date', font=('Arial', 15), bg='black', fg='#FC4C4F', width=10)
+    dateButton.grid(row=1, column=1, padx=5, pady=5)
 
     #Transaction
     tLabel = Label(tFrame, text='Select Transaction', font=('Arial', 20), bg='#FC4C4F')
