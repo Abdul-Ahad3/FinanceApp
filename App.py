@@ -30,6 +30,7 @@ def nexB():
             messagebox.showerror(parent=ledgerWin, title='Error', message='Please enter a valid Ledger name')
     
     ledgerWin = Tk()
+    ledgerWin.title("Finance App")
     menuBar = Menu(ledgerWin, font=("Arial", 30)) #Main menu bar
     i=10
 
@@ -87,6 +88,7 @@ def nexB():
 #Code for the main window (after next button is pressed)
 def nextB():
     mainWin = Tk()
+    mainWin.title("Finance App")
 
     #Function for opening a new file
     def newP():
@@ -206,22 +208,24 @@ def nextB():
     dateLabel = Label(dFrame, text='Date', font=('Arial', 20), bg='#FC4C4F')
     dateLabel.grid(row=0, column=0, columnspan=3, padx=5, pady=5)
 
-    calWin = Tk()
-    def getDate():
-        dLabel.config(text=calendar.get_date())
+    def setDate():
+        def ok():
+            dLabel.config(text=calendar.get_date())
+
+        calWin = Tk()
+        calWin.title("Select Date")
+        #Calendar to get date
+        calendar = Calendar(calWin, selectmode='day', year=2023, month=8, day=12)
+        calendar.pack()
         calWin.lift()
-        calWin.destroy()
+        ok = Button(calWin, text='OK', command=ok)
+        ok.pack(side='bottom')
 
-    #Calendar to get date
-    calendar = Calendar(calWin, selectmode='day', year=2023, month=8, day=12)
-    calendar.pack()
-    ok = Button(calWin, text='OK', command=getDate)
-    ok.pack(side='bottom')
-
+    
     dLabel = Label(dFrame, font=('Arial', 20), bg='white', width=10)
     dLabel.grid(row=1, column=0, padx=5, pady=5)
 
-    dateButton = Button(dFrame, text='Select Date', font=('Arial', 15), bg='black', fg='#FC4C4F', width=10)
+    dateButton = Button(dFrame, text='Select Date', font=('Arial', 15), bg='black', fg='#FC4C4F', width=10, command=setDate)
     dateButton.grid(row=1, column=1, padx=5, pady=5)
 
     #Transaction
@@ -254,8 +258,9 @@ def nextB():
 
 #Welcome window
 welcome = Tk()
+welcome.title("Finance App")
 
-label1 = Label(welcome, text="My App", font=('Arial',50,'bold'),bg='#FC4C4F')
+label1 = Label(welcome, text="Finanace App", font=('Arial',50,'bold'),bg='#FC4C4F')
 label2 = Label(welcome, text="WELCOME", font=('Arial',50),bg='#FC4C4F')
 nextButton = Button(text='NEXT', font=('Arial',40), bg='black', fg='#FC4C4F', command=nexB)
 
