@@ -4,6 +4,7 @@ from tkinter import ttk
 from tkinter import colorchooser
 from tkinter import filedialog
 from tkinter import messagebox
+from tkcalendar import *
 from tkinter import simpledialog
 import os
 
@@ -121,7 +122,7 @@ def nextB():
         
         if(transac.get() == "Loan Taken" or transac.get() == "Loan Given"):
             if (messagebox.askyesno(message='Would you like to add a reminder for the loan?')):
-                box = simpledialog.askstring("Loan description", "Enter loan description")
+                pass
 
         accInfo.append([day.get() + "/" + mon.get() + "/" + year.get(), accEntry.get(), transac.get(), cash.get()])
         
@@ -205,23 +206,20 @@ def nextB():
     dateLabel = Label(dFrame, text='Date', font=('Arial', 20), bg='#FC4C4F')
     dateLabel.grid(row=0, column=0, columnspan=3, padx=5, pady=5)
 
-    day = ttk.Combobox(dFrame, value=["1","2","3","4","5","6","7","8","9","10",
-                                      "11","12","13","14","15","16","17","18","19","20",
-                                      "21","22","23","24","25","26","27","28","29","30",
-                                      "31"], font=('Arial', 20), width=5)
-    day.grid(row=1, column=0, padx=(5, 1), pady=5)
+    calWin = Tk()
+    def getDate():
+        dLabel.config(text=calendar.get_date())
 
-    mon = ttk.Combobox(dFrame, value=["01","02","03","04","05","06","07","08","09","10",
-                                      "11","12"], font=('Arial', 20), width=10)
-    mon.grid(row=1, column=1, pady=5)
+    calendar = Calendar(calWin, selectmode='day', year=2023, month=8, day=12, width=600, height=600)
+    calendar.pack()
+    ok = Button(calWin, text='OK', command=getDate)
+    ok.pack(side='bottom')
 
-    year = ttk.Combobox(dFrame, value=["2000","2001","2002","2003","2004","2005","2006","2007","2008","2009",
-                                      "2010","2011","2012","2013","2014","2015","2016","2017","2018","2019",
-                                      "2020","2021","2022","2023","2024","2025","2026","2027","2028","2029",
-                                      "2030","2031","2032","2033","2034","2035","2036","2037","2038","2039",
-                                      "2040","2041","2042","2043","2044","2045","2046","2047","2048","2049",
-                                      "2050"], font=('Arial', 20), width=8)
-    year.grid(row=1, column=2, padx=(1, 5), pady=5)
+    dLabel = Label(dFrame, font=('Arial', 15), bg='white', width=10)
+    dLabel.grid(row=1, column=0)
+
+    dateButton = Button(dFrame, text='Select Date', font=('Arial', 15), bg='black', fg='#FC4C4F')
+    dateButton.grid(row=1, column=1)
 
     #Transaction
     tLabel = Label(tFrame, text='Select Transaction', font=('Arial', 20), bg='#FC4C4F')
