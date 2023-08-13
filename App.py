@@ -26,8 +26,10 @@ def nexB():
             nextB()
             x = Button(ledgerWin, text=ledEntry.get(), font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command=openLedger)
             x.grid(row=row, column=1, padx=5, pady=5)
-        else:
+        elif(ledEntry.index("end") == 0):
             messagebox.showerror(parent=ledgerWin, title='Error', message='Please enter a valid Ledger name')
+        elif(tcEntry.index("end") == 0):
+            messagebox.showerror(parent=ledgerWin, title='Error', message='Please enter a valid cash amount')
     
     ledgerWin = Tk()
     ledgerWin.title("Finance App")
@@ -129,11 +131,16 @@ def nextB():
         
         if(transac.get() == "Loan Taken" or transac.get() == "Loan Given"):
             if (messagebox.askyesno(message='Would you like to add a reminder for the loan?')):
-                box = simpledialog.askstring("Loan Title", "Enter the name of recipient/donor")
-                box1 = simpledialog.askstring("Due date", "Enter due date in format dd/mm/yyyy")
+                lbox = simpledialog.askstring("Loan Title", "Enter the name of recipient/donor")
+                lbox1 = simpledialog.askstring("Due date", "Enter due date in format dd/mm/yyyy")
 
-                tk.Button(lrFrame, text=box, font=('Arial', 10), bg='black', fg='#FC4C4F').grid(row=0, column=0, padx=5, pady=5)
-
+                tk.Button(lrFrame, text=lbox, font=('Arial', 10), bg='black', fg='#FC4C4F').grid(row=0, column=0, padx=5, pady=5)
+        
+        if(transac.get() == "Payment Due"):
+            if (messagebox.askyesno(message='Would you like to add a reminder for the payment?')):
+                pbox = simpledialog.askstring("Payment Title", "Enter the name of recipient/payer")
+                pbox1 = simpledialog.askstring("Due date", "Enter due date in format dd/mm/yyyy")
+        
         accInfo.append([dLabel.cget("text"), transac.get(), cash.get()])
         
         new_file_path = "C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\" + ledEntry.get() + ".txt"
@@ -191,7 +198,7 @@ def nextB():
 
     #Loan Reminder Frame
     lrFrame = Frame(accFrame, bg='#FC4C4F')
-    lrFrame.grid(row=0, column=2, rowspan=3)
+    lrFrame.grid(row=0, column=2, rowspan=3, columnspan=2)
 
     #Transactions frame
     tFrame = Frame(mainWin, bg='#FC4C4F', width=mainWin.winfo_width(), height=mainWin.winfo_height()/3)
@@ -239,6 +246,12 @@ def nextB():
 
     dateButton = Button(dFrame, text='Select Date', font=('Arial', 15), bg='black', fg='#FC4C4F', width=10, command=setDate)
     dateButton.grid(row=1, column=1, padx=5, pady=5)
+
+    lLabel = Label(lrFrame, text='Loans:', font=('Arial', 20), bg='#FC4C4F')
+    lLabel.grid(row=0, column=0, padx=5, pady=5)
+
+    pLabel = Label(lrFrame, text='Payments:', font=('Arial', 20), bg='#FC4C4F')
+    pLabel.grid(row=4, column=0, padx=5, pady=5)
 
     #Transaction
     tLabel = Label(tFrame, text='Select Transaction', font=('Arial', 20), bg='#FC4C4F')
