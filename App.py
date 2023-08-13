@@ -22,7 +22,7 @@ def nexB():
     def checkLedger():
         global row
         row+=1
-        if(ledEntry.index("end") != 0):
+        if(ledEntry.index("end") != 0 and tcEntry.index("end") != 0):
             nextB()
             x = Button(ledgerWin, text=ledEntry.get(), font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command=openLedger)
             x.grid(row=row, column=1, padx=5, pady=5)
@@ -109,7 +109,12 @@ def nextB():
 
     #Function for changing background color
     def bGround():
-        mainWin.config(bg=colorchooser.askcolor()[1])
+        back = colorchooser.askcolor()[1]
+        mainWin.config(bg=back)
+        accFrame.config(bg=back)
+        tFrame.config(bg=back)
+        dFrame.config(bg=back)
+        lrFrame.config(bg=back)
     
     accInfo = [["Date", "Account title", "Transaction", "Amount(Rs.)"]]
     global total
@@ -124,9 +129,12 @@ def nextB():
         
         if(transac.get() == "Loan Taken" or transac.get() == "Loan Given"):
             if (messagebox.askyesno(message='Would you like to add a reminder for the loan?')):
-                pass
+                box = simpledialog.askstring("Loan Title", "Enter the name of recipient/donor")
+                box1 = simpledialog.askstring("Due date", "Enter due date in format dd/mm/yyyy")
 
-        accInfo.append([dLabel.get(), transac.get(), cash.get()])
+                tk.Button(lrFrame, text=box, font=('Arial', 10), bg='black', fg='#FC4C4F').grid(row=0, column=0, padx=5, pady=5)
+
+        accInfo.append([dLabel.cget("text"), transac.get(), cash.get()])
         
         new_file_path = "C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\" + ledEntry.get() + ".txt"
         file = open(new_file_path, 'w')
@@ -181,6 +189,10 @@ def nextB():
     dFrame = Frame(accFrame, bg='#FC4C4F')
     dFrame.grid(row=1, column=1, rowspan=2)
 
+    #Loan Reminder Frame
+    lrFrame = Frame(accFrame, bg='#FC4C4F')
+    lrFrame.grid(row=0, column=2, rowspan=3)
+
     #Transactions frame
     tFrame = Frame(mainWin, bg='#FC4C4F', width=mainWin.winfo_width(), height=mainWin.winfo_height()/3)
     tFrame.grid(row=1, column=0)
@@ -234,7 +246,7 @@ def nextB():
 
     transac = ttk.Combobox(tFrame, values=['Cash Recieved', 'Online Recieved', 'Cash Payment', 
                                           'Online Payment', 'Loan Given', 'Loan Recieved',
-                                          'Loan Taken', 'Loan Paid'],
+                                          'Loan Taken', 'Loan Paid', 'Payment Due'],
                                           font=('Arial', 20), width=20)
     transac.grid(row=1, column=0, padx=5, pady=5)
 
@@ -253,14 +265,14 @@ def nextB():
     preview = Button(bFrame, text='Show Preview', font=('Arial', 20), bg='black', fg='#FC4C4F', width=12, command=prevShow)
     preview.grid(row=0, column=1, padx=(5, 0))
 
-    mainWin.geometry("1130x600")
+    mainWin.geometry("800x600")
     mainWin.config(background="#FC4C4F", menu=menuBar)
 
 #Welcome window
 welcome = Tk()
 welcome.title("Finance App")
 
-label1 = Label(welcome, text="Finanace App", font=('Arial',50,'bold'),bg='#FC4C4F')
+label1 = Label(welcome, text="Finance App", font=('Arial',50,'bold'),bg='#FC4C4F')
 label2 = Label(welcome, text="WELCOME", font=('Arial',50),bg='#FC4C4F')
 nextButton = Button(text='NEXT', font=('Arial',40), bg='black', fg='#FC4C4F', command=nexB)
 
