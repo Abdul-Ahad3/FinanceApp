@@ -33,37 +33,7 @@ def nexB():
     
     ledgerWin = Tk()
     ledgerWin.title("Finance App")
-    menuBar = Menu(ledgerWin, font=("Arial", 30)) #Main menu bar
-    i=10
-
-    #File drop down menu
-    fileMenu = Menu(menuBar, tearoff=0, font=("Arial", 10))
-    menuBar.add_cascade(label="File", menu=fileMenu)
-    fileMenu.add_command(label="New")
-    fileMenu.add_command(label="Open")
-    fileMenu.add_command(label="Save")
-    fileMenu.add_command(label="Save As")
-    fileMenu.add_command(label="Exit", command=exit)
-
-    #Edit drop down menu
-    editMenu = Menu(menuBar, tearoff=0, font=("Arial", 10))
-    menuBar.add_cascade(label="Edit", menu=editMenu)
-    editMenu.add_command(label="Background")
-    
-    #Font Size menu in Edit Menu
-    fsMenu = Menu(editMenu, tearoff=0, font=('Arial', 10))
-    editMenu.add_cascade(label='Font Size', menu=fsMenu)
-    while(i<=50):
-        fsMenu.add_command(label=str(i))
-        i+=2
-    
-    #Font menu in Edit Menu
-    fontMenu = Menu(editMenu, tearoff=0, font=('Arial', 10))
-    editMenu.add_cascade(label='Font', menu=fontMenu)
-    fontMenu.add_command(label="Arial")
-    fontMenu.add_command(label="Times New Roman")
-    fontMenu.add_command(label="Calibri")
-
+   
     #Total Available Cash
     global tcEntry
     tcEntry = Entry(ledgerWin, font=('Arial', 30), width=22)
