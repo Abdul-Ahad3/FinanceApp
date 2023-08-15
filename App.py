@@ -52,7 +52,7 @@ def nexB():
     button.grid(row=2, column=0, padx=5, pady=5)
     
     ledgerWin.geometry("500x600")
-    ledgerWin.config(background='#FC4C4F', menu=menuBar)
+    ledgerWin.config(background='#FC4C4F')
     welcome.destroy()
     ledgerWin.mainloop()
 
@@ -101,15 +101,23 @@ def nextB():
         
         if(transac.get() == "Loan Taken" or transac.get() == "Loan Given"):
             if (messagebox.askyesno(message='Would you like to add a reminder for the loan?')):
-                lbox = simpledialog.askstring("Loan Title", "Enter the name of recipient/donor")
-                lbox1 = simpledialog.askstring("Due date", "Enter due date in format dd/mm/yyyy")
-
-                tk.Button(lrFrame, text=lbox, font=('Arial', 10), bg='black', fg='#FC4C4F').grid(row=0, column=0, padx=5, pady=5)
+                
+                lplace = 1
+                while lplace<=3:
+                    lbox = simpledialog.askstring("Loan Title", "Enter the name of recipient/donor")
+                    lbox1 = simpledialog.askstring("Due date", "Enter due date in format dd/mm/yyyy")
+                    tk.Button(lrFrame, text=lbox).grid(row=lplace, column=0)
+                    lplace+=1
         
         if(transac.get() == "Payment Due"):
             if (messagebox.askyesno(message='Would you like to add a reminder for the payment?')):
                 pbox = simpledialog.askstring("Payment Title", "Enter the name of recipient/payer")
                 pbox1 = simpledialog.askstring("Due date", "Enter due date in format dd/mm/yyyy")
+
+                pplace = 1
+                while pplace<=3:
+                    tk.Button(lrFrame, text=lbox).grid(row=pplace, column=0)
+                    pplace+=1
         
         accInfo.append([dLabel.cget("text"), transac.get(), cash.get()])
         
