@@ -12,7 +12,7 @@ import os
 connection = sqlite3.connect(':memory:')
 myCursor = connection.cursor()
 
-myCursor.execute("CREATE TABLE ledger(Date text, Account Title text, Transaction text, Cash integer)")
+myCursor.execute("CREATE TABLE ledger(Date text, Account_Title text, Transaction_Type text, Cash integer)")
 
 def nexB():
     #Opens the ledger made already
@@ -27,6 +27,8 @@ def nexB():
         row+=1
         if(ledEntry.index("end") != 0 and tcEntry.index("end") != 0):
             nextB()
+            myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash)", 
+                {'date':"Nil", 'acctitle':"Made new Ledger", 'transac':"Nil", 'cash':int(tcEntry.get())})
             x = Button(ledgerWin, text=ledEntry.get(), font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command=openLedger)
             x.grid(row=row, column=1, padx=5, pady=5)
         elif(ledEntry.index("end") == 0):
@@ -90,7 +92,7 @@ def nextB():
         dFrame.config(bg=back)
         lrFrame.config(bg=back)
     
-    accInfo = [["Date", "Account title", "Transaction", "Amount(Rs.)"]]
+
     global total
     total=int(tcEntry.get())
     def addInfo():
@@ -117,12 +119,13 @@ def nextB():
 
                 pplace = 1
                 while pplace<=3:
-                    tk.Button(lrFrame, text=lbox).grid(row=pplace, column=0)
+                    tk.Button(lrFrame, text=pbox).grid(row=pplace, column=0)
                     pplace+=1
         
-        accInfo.append([dLabel.cget("text"), transac.get(), cash.get()])
         myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash)", 
-                         {'date':dLabel.cget(), 'acctitle':accEntry.get(), 'transac':transac.get(), 'cash':int(cash.get())})
+                         {'date':dLabel.cget("text"), 'acctitle':accEntry.get(), 'transac':transac.get(), 'cash':int(cash.get())})
+        myCursor.execute("SELECT * FROM ledger")
+        print(myCursor.fetchall())
             
 
     def prevShow():
