@@ -37,8 +37,6 @@ def nexB():
             messagebox.showerror(parent=ledgerWin, title='Error', message='Please enter a valid Ledger name')
         elif(tcEntry.index("end") == 0):
             messagebox.showerror(parent=ledgerWin, title='Error', message='Please enter a valid cash amount')
-        elif(ledEntry.index("end") == 0 and tcEntry.index("end") == 0):
-            messagebox.showerror(parent=ledgerWin, title='Error', message='No value entered')
     
     ledgerWin = Tk()
     ledgerWin.title("Finance App")
@@ -128,12 +126,24 @@ def nextB():
         
         myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash)", 
                          {'date':dLabel.cget("text"), 'acctitle':accEntry.get(), 'transac':transac.get(), 'cash':int(cash.get())})
-        myCursor.execute("SELECT * FROM ledger")
-        print(myCursor.fetchall())
+        #myCursor.execute("SELECT * FROM ledger")
+        #print(myCursor.fetchall())
             
 
     def prevShow():
-        pass
+        previewWin = Tk()
+
+        r = 0
+        c = 0
+        myCursor.execute("SELECT * FROM ledger")
+        for elist in myCursor.fetchall():
+            for entry in elist:
+                while(r<=3):
+                    tk.Label(previewWin, text=entry, font=('Arial', 20)).grid(row=r, column=c)
+                    c+=1
+                r+=1
+        
+        previewWin.mainloop()
 
     #Main menu bar
     menuBar = Menu(mainWin, font=("Arial", 30))
