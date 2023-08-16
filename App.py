@@ -12,6 +12,8 @@ import os
 connection = sqlite3.connect(':memory:')
 myCursor = connection.cursor()
 
+myCursor.execute("CREATE TABLE ledger(Date text, Account Title text, Transaction text, Cash integer)")
+
 def nexB():
     #Opens the ledger made already
     def openLedger():
@@ -119,6 +121,8 @@ def nextB():
                     pplace+=1
         
         accInfo.append([dLabel.cget("text"), transac.get(), cash.get()])
+        myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash)", 
+                         {'date':dLabel.cget(), 'acctitle':accEntry.get(), 'transac':transac.get(), 'cash':int(cash.get())})
             
 
     def prevShow():
