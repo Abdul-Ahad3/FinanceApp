@@ -27,14 +27,18 @@ def nexB():
         row+=1
         if(ledEntry.index("end") != 0 and tcEntry.index("end") != 0):
             nextB()
+            
+            x = Button(ledgerWin, text=ledEntry.get(), font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command=openLedger)
+            x.grid(row=row, column=0, padx=5, pady=5)
+
             myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash)", 
                 {'date':"Nil", 'acctitle':"Made new Ledger", 'transac':"Nil", 'cash':int(tcEntry.get())})
-            x = Button(ledgerWin, text=ledEntry.get(), font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command=openLedger)
-            x.grid(row=row, column=1, padx=5, pady=5)
         elif(ledEntry.index("end") == 0):
             messagebox.showerror(parent=ledgerWin, title='Error', message='Please enter a valid Ledger name')
         elif(tcEntry.index("end") == 0):
             messagebox.showerror(parent=ledgerWin, title='Error', message='Please enter a valid cash amount')
+        elif(ledEntry.index("end") == 0 and tcEntry.index("end") == 0):
+            messagebox.showerror(parent=ledgerWin, title='Error', message='No value entered')
     
     ledgerWin = Tk()
     ledgerWin.title("Finance App")
@@ -204,13 +208,16 @@ def nextB():
     dateLabel.grid(row=0, column=0, columnspan=3, padx=5, pady=5)
 
     def setDate():
+        def okButton():
+            dLabel.config(text=calendar.get_date())
+        
         calWin = Tk()
         calWin.title("Select Date")
         #Calendar to get date
         calendar = Calendar(calWin, selectmode='day', year=2023, month=8, day=12)
         calendar.pack()
         calWin.lift()
-        ok = Button(calWin, text='OK', command={dLabel.config(text=calendar.get_date())})
+        ok = Button(calWin, text='OK', command=okButton)
         ok.pack(side='bottom')
 
     
