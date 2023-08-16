@@ -6,14 +6,15 @@ from tkinter import filedialog
 from tkinter import messagebox
 from tkcalendar import *
 from tkinter import simpledialog
+import sqlite3
 import os
+
+connection = sqlite3.connect(':memory:')
+myCursor = connection.cursor()
 
 def nexB():
     #Opens the ledger made already
     def openLedger():
-        new_file_path = "C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\" + ledEntry.get() + ".txt"
-        file = open(new_file_path, 'w')
-        file.write("\n")
         nextB()
     
     global row
@@ -64,16 +65,15 @@ def nextB():
 
     #Function for opening a new file
     def newP():
-        file = open("C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\file.txt", 'x')
+        pass
 
     #Function for opening an already existing file
     def Open():
-        os.startfile(filedialog.askopenfilename())
+        pass
 
     #Function for saving file
     def save():
-        new_file_path = "C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\" + ledEntry.get() + ".txt"
-        file = open(new_file_path, 'x')
+        pass
     
     #Function for exiting the window
     def exit():
@@ -101,7 +101,6 @@ def nextB():
         
         if(transac.get() == "Loan Taken" or transac.get() == "Loan Given"):
             if (messagebox.askyesno(message='Would you like to add a reminder for the loan?')):
-                
                 lplace = 1
                 while lplace<=3:
                     lbox = simpledialog.askstring("Loan Title", "Enter the name of recipient/donor")
@@ -120,18 +119,10 @@ def nextB():
                     pplace+=1
         
         accInfo.append([dLabel.cget("text"), transac.get(), cash.get()])
-        
-        new_file_path = "C:\\Users\\delll\\OneDrive\\Desktop\\MyApp\\Ledger\\" + ledEntry.get() + ".txt"
-        file = open(new_file_path, 'w')
-        for a in accInfo:
-            for b in a:
-                file.write("|\t" + b + "\t ")
-            file.write("|\n---------------------------------------------------------------------\n")
-        file.write("Total--------------------------------------------|\t\t" + str(total) + "\t\t|")
             
 
     def prevShow():
-        print("")
+        pass
 
     #Main menu bar
     menuBar = Menu(mainWin, font=("Arial", 30))
@@ -206,16 +197,13 @@ def nextB():
     dateLabel.grid(row=0, column=0, columnspan=3, padx=5, pady=5)
 
     def setDate():
-        def ok():
-            dLabel.config(text=calendar.get_date())
-
         calWin = Tk()
         calWin.title("Select Date")
         #Calendar to get date
         calendar = Calendar(calWin, selectmode='day', year=2023, month=8, day=12)
         calendar.pack()
         calWin.lift()
-        ok = Button(calWin, text='OK', command=ok)
+        ok = Button(calWin, text='OK', command={dLabel.config(text=calendar.get_date())})
         ok.pack(side='bottom')
 
     
