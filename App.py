@@ -138,11 +138,13 @@ def nextB():
         myCursor.execute("SELECT * FROM ledger")
         for elist in myCursor.fetchall():
             for entry in elist:
-                while(r<=3):
-                    tk.Label(previewWin, text=entry, font=('Arial', 20)).grid(row=r, column=c)
-                    c+=1
-                r+=1
+                tk.Label(previewWin, text=entry, font=('Arial', 20), bg='#FC4C4F', 
+                         borderwidth=5, relief='groove').grid(row=r, column=c, padx=5, pady=5)
+                c+=1
+            c=0
+            r+=1
         
+        previewWin.config(bg='#FC4C4F')
         previewWin.mainloop()
 
     #Main menu bar
