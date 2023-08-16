@@ -26,8 +26,8 @@ def nexB():
         if(ledEntry.index("end") != 0 and tcEntry.index("end") != 0):
             nextB()
             
-            x = Button(ledgerWin, text=ledEntry.get(), font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command=openLedger)
-            x.grid(row=row, column=0, padx=5, pady=5)
+            tk.Button(ledgerWin, text=ledEntry.get(), font=('Arial', 20), bg='black', fg='#FC4C4F', 
+                      width=30, command=openLedger).grid(row=row, column=0, padx=5, pady=5)
 
             myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash)", 
                 {'date':"Nil", 'acctitle':"Made new Ledger", 'transac':"Nil", 'cash':int(tcEntry.get())})
@@ -53,8 +53,8 @@ def nexB():
     ledEntry.grid(row=1, column=0, padx=5, pady=5)
 
     #Add Ledger Button
-    button = Button(ledgerWin, text='+ Add Ledger', font=('Arial', 20), bg='black', fg='#FC4C4F', width=30, command =checkLedger)
-    button.grid(row=2, column=0, padx=5, pady=5)
+    tk.Button(ledgerWin, text='+ Add Ledger', font=('Arial', 20), bg='black', fg='#FC4C4F', 
+              width=30, command =checkLedger).grid(row=2, column=0, padx=5, pady=5)
     
     ledgerWin.geometry("500x600")
     ledgerWin.config(background='#FC4C4F')
@@ -197,19 +197,19 @@ def nextB():
     mainWin.grid_columnconfigure(0, weight=1)
     
     #Ledger name as title
-    title = Label(accFrame, text=ledEntry.get(), font=('Arial', 40, 'bold'), bg='#FC4C4F')
-    title.grid(row=0, column=0, columnspan=2, padx=5, pady=(5, 10))
+    tk.Label(accFrame, text=ledEntry.get(), font=('Arial', 40, 'bold'), 
+             bg='#FC4C4F').grid(row=0, column=0, columnspan=2, padx=5, pady=(5, 10))
     
     #Account title
-    accLabel = Label(accFrame, text='Account title', font=('Arial', 20), bg='#FC4C4F')
-    accLabel.grid(row=1, column=0, padx=5, pady=5)
+    tk.Label(accFrame, text='Account title', font=('Arial', 20), 
+             bg='#FC4C4F').grid(row=1, column=0, padx=5, pady=5)
 
     accEntry = Entry(accFrame, font=('Arial', 20))
     accEntry.grid(row=2, column=0, padx=5, pady=5)
 
     #Date
-    dateLabel = Label(dFrame, text='Date', font=('Arial', 20), bg='#FC4C4F')
-    dateLabel.grid(row=0, column=0, columnspan=3, padx=5, pady=5)
+    tk.Label(dFrame, text='Date', font=('Arial', 20), 
+             bg='#FC4C4F').grid(row=0, column=0, columnspan=3, padx=5, pady=5)
 
     def setDate():
         def okButton():
@@ -227,18 +227,15 @@ def nextB():
     dLabel = Label(dFrame, font=('Arial', 20), bg='white', width=10)
     dLabel.grid(row=1, column=0, padx=5, pady=5)
 
-    dateButton = Button(dFrame, text='Select Date', font=('Arial', 15), bg='black', fg='#FC4C4F', width=10, command=setDate)
-    dateButton.grid(row=1, column=1, padx=5, pady=5)
+    tk.Button(dFrame, text='Select Date', font=('Arial', 15), bg='black', fg='#FC4C4F', 
+              width=10, command=setDate).grid(row=1, column=1, padx=5, pady=5)
 
-    lLabel = Label(lrFrame, text='Loans:', font=('Arial', 20), bg='#FC4C4F')
-    lLabel.grid(row=0, column=0, padx=5, pady=5)
+    tk.Label(lrFrame, text='Loans:', font=('Arial', 20), bg='#FC4C4F').grid(row=0, column=0, padx=5, pady=5)
 
-    pLabel = Label(lrFrame, text='Payments:', font=('Arial', 20), bg='#FC4C4F')
-    pLabel.grid(row=4, column=0, padx=5, pady=5)
+    tk.Label(lrFrame, text='Payments:', font=('Arial', 20), bg='#FC4C4F').grid(row=4, column=0, padx=5, pady=5)
 
     #Transaction
-    tLabel = Label(tFrame, text='Select Transaction', font=('Arial', 20), bg='#FC4C4F')
-    tLabel.grid(row=0, column=0, padx=5, pady=5)
+    tk.Label(tFrame, text='Select Transaction', font=('Arial', 20), bg='#FC4C4F').grid(row=0, column=0, padx=5, pady=5)
 
     transac = ttk.Combobox(tFrame, values=['Cash Recieved', 'Online Recieved', 'Cash Payment', 
                                           'Online Payment', 'Loan Given', 'Loan Recieved',
@@ -247,19 +244,19 @@ def nextB():
     transac.grid(row=1, column=0, padx=5, pady=5)
 
     #Amount of Cash/Payment
-    cashLabel = Label(tFrame, text='Amount(Cash)', font=('Arial', 20), bg='#FC4C4F')
-    cashLabel.grid(row=0, column=1, padx=5, pady=5)
+    tk.Label(tFrame, text='Amount(Cash)', font=('Arial', 20), 
+             bg='#FC4C4F').grid(row=0, column=1, padx=5, pady=5)
 
     cash = Entry(tFrame, font=('Arial', 20), width=20)
     cash.grid(row=1, column=1, padx=5, pady=5)
     
     #Button to add the info to a text file
-    add = Button(bFrame, text='Add', font=('Arial', 20), bg='black', fg='#FC4C4F', width=12, command=addInfo)
-    add.grid(row=0, column=0, padx=(0, 5))
+    tk.Button(bFrame, text='Add', font=('Arial', 20), bg='black', fg='#FC4C4F', 
+              width=12, command=addInfo).grid(row=0, column=0, padx=(0, 5))
 
     #Button to show preview
-    preview = Button(bFrame, text='Show Preview', font=('Arial', 20), bg='black', fg='#FC4C4F', width=12, command=prevShow)
-    preview.grid(row=0, column=1, padx=(5, 0))
+    tk.Button(bFrame, text='Show Preview', font=('Arial', 20), bg='black', fg='#FC4C4F', 
+              width=12, command=prevShow).grid(row=0, column=1, padx=(5, 0))
 
     mainWin.geometry("800x600")
     mainWin.config(background="#FC4C4F", menu=menuBar)
@@ -268,13 +265,10 @@ def nextB():
 welcome = Tk()
 welcome.title("Finance App")
 
-label1 = Label(welcome, text="Finance App", font=('Arial',50,'bold'),bg='#FC4C4F')
-label2 = Label(welcome, text="WELCOME", font=('Arial',50),bg='#FC4C4F')
-nextButton = Button(text='NEXT', font=('Arial',40), bg='black', fg='#FC4C4F', command=nexB)
+tk.Label(welcome, text="Finance App", font=('Arial',50,'bold'),bg='#FC4C4F').pack()
+tk.Label(welcome, text="WELCOME", font=('Arial',50),bg='#FC4C4F').pack()
+tk.Button(text='NEXT', font=('Arial',40), bg='black', fg='#FC4C4F', command=nexB).place(relx=0.35, rely=0.6)
 
-label1.pack()   
-label2.pack()
-nextButton.place(relx=0.35, rely=0.6)
 welcome.geometry("500x500")
 welcome.config(background="#FC4C4F")
 
