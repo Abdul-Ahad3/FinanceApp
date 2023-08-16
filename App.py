@@ -19,12 +19,10 @@ def nexB():
     def openLedger():
         nextB()
     
-    global row
-    row=2
+    global row;  row=2
     #Function to check if the ledger entry box is empty or not
     def checkLedger():
-        global row
-        row+=1
+        global row;  row+=1
         if(ledEntry.index("end") != 0 and tcEntry.index("end") != 0):
             nextB()
             
@@ -95,8 +93,7 @@ def nextB():
         lrFrame.config(bg=back)
     
 
-    global total
-    total=int(tcEntry.get())
+    global total;  total=int(tcEntry.get())
     def addInfo():
         global total
         #Condition to alter the calculation of total cash according to transaction type
@@ -133,23 +130,19 @@ def nextB():
     def prevShow():
         previewWin = Tk()
 
-        r = 0
-        c = 0
+        r = 0;  c = 0
         myCursor.execute("SELECT * FROM ledger")
         for elist in myCursor.fetchall():
             for entry in elist:
-                tk.Label(previewWin, text=entry, font=('Arial', 20), bg='#FC4C4F', 
-                         borderwidth=5, relief='groove').grid(row=r, column=c, padx=5, pady=5)
+                tk.Label(previewWin, text=entry, font=('Arial', 20), bg='#FC4C4F').grid(row=r, column=c, padx=5, pady=5)
                 c+=1
-            c=0
-            r+=1
+            c=0;  r+=1
         
-        previewWin.config(bg='#FC4C4F')
+        previewWin.config(bg='#FC4C4F', borderwidth=10, relief='solid')
         previewWin.mainloop()
 
     #Main menu bar
-    menuBar = Menu(mainWin, font=("Arial", 30))
-    i=10
+    menuBar = Menu(mainWin, font=("Arial", 30));  i=10
 
     #File drop down menu
     fileMenu = Menu(menuBar, tearoff=0, font=("Arial", 10))
@@ -169,8 +162,7 @@ def nextB():
     fsMenu = Menu(editMenu, tearoff=0, font=('Arial', 10))
     editMenu.add_cascade(label='Font Size', menu=fsMenu)
     while(i<=50):
-        fsMenu.add_command(label=str(i))
-        i+=2
+        fsMenu.add_command(label=str(i));  i+=2
     
     #Font menu in Edit Menu
     fontMenu = Menu(editMenu, tearoff=0, font=('Arial', 10))
@@ -229,8 +221,7 @@ def nextB():
         calendar = Calendar(calWin, selectmode='day', year=2023, month=8, day=12)
         calendar.pack()
         calWin.lift()
-        ok = Button(calWin, text='OK', command=okButton)
-        ok.pack(side='bottom')
+        tk.Button(calWin, text='OK', command=okButton).pack(side='bottom')
 
     
     dLabel = Label(dFrame, font=('Arial', 20), bg='white', width=10)
