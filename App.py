@@ -2,7 +2,6 @@ from tkinter import *
 import tkinter as tk
 from tkinter import ttk
 from tkinter import colorchooser
-from tkinter import filedialog
 from tkinter import messagebox
 from tkcalendar import *
 from tkinter import simpledialog
@@ -30,7 +29,7 @@ def nexB():
                       width=30, command=openLedger).grid(row=row, column=0, padx=5, pady=5)
 
             myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash)", 
-                {'date':"Nil", 'acctitle':"Made new Ledger", 'transac':"Nil", 'cash':int(tcEntry.get())})
+                {'date':"Nil", 'acctitle':"Made new Ledger", 'transac':"Starting Cash", 'cash':int(tcEntry.get())})
         elif(ledEntry.index("end") == 0):
             messagebox.showerror(parent=ledgerWin, title='Error', message='Please enter a valid Ledger name')
         elif(tcEntry.index("end") == 0):
@@ -134,7 +133,8 @@ def nextB():
         myCursor.execute("SELECT * FROM ledger")
         for elist in myCursor.fetchall():
             for entry in elist:
-                tk.Label(previewWin, text=entry, font=('Arial', 20), bg='#FC4C4F').grid(row=r, column=c, padx=5, pady=5)
+                tk.Label(previewWin, text=entry, font=('Arial', 20), 
+                         bg='#FC4C4F').grid(row=r, column=c, padx=20, pady=20)
                 c+=1
             c=0;  r+=1
         
