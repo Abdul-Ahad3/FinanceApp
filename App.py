@@ -5,6 +5,7 @@ from tkinter import colorchooser
 from tkinter import messagebox
 from tkcalendar import *
 from tkinter import simpledialog
+from time import *
 import sqlite3
 import os
 
@@ -29,7 +30,7 @@ def nexB():
                       width=30, command=openLedger).grid(row=row, column=0, padx=5, pady=5)
 
             myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash)", 
-                {'date':"Nil", 'acctitle':"Made new Ledger", 'transac':"Starting Cash", 'cash':int(tcEntry.get())})
+                {'date':strftime("%D"), 'acctitle':"Made new Ledger", 'transac':"Starting Cash", 'cash':int(tcEntry.get())})
         elif(ledEntry.index("end") == 0):
             messagebox.showerror(parent=ledgerWin, title='Error', message='Please enter a valid Ledger name')
         elif(tcEntry.index("end") == 0):
@@ -60,6 +61,14 @@ def nexB():
     welcome.destroy()
     ledgerWin.mainloop()
 
+
+#Data array to store data temporarily for showing in the preview window
+#Appending the list from database to this array
+data = [["Date", "Account title", "Transaction", "Cash(Rs.)"]]
+myCursor.execute("SELECT * FROM ledger")
+result = [list(x) for x in myCursor.fetchall()]
+for elist in result:
+    data.extend(elist)
 
 #Code for the main window (after next button is pressed)
 def nextB():
@@ -127,11 +136,12 @@ def nextB():
             
 
     def prevShow():
+        data.append([dLabel.cget("text"), accEntry.get(), transac.get(), cash.get()])
+        
         previewWin = Tk()
 
         r = 0;  c = 0
-        myCursor.execute("SELECT * FROM ledger")
-        for elist in myCursor.fetchall():
+        for elist in data:
             for entry in elist:
                 tk.Label(previewWin, text=entry, font=('Arial', 20), 
                          bg='#FC4C4F').grid(row=r, column=c, padx=20, pady=20)
