@@ -9,14 +9,14 @@ from time import *
 import sqlite3
 import os
 
-connection = sqlite3.connect(':memory:')
-myCursor = connection.cursor()
+#SQLite database (connection and cursor)
+myConnection = sqlite3.connect(':memory:')
+myCursor = myConnection.cursor()
 
-myCursor.execute("CREATE TABLE ledger(Date text, Account_Title text, Transaction_Type text, Cash integer)")
+myCursor.execute("CREATE TABLE ledger(Date text, Account_Title text, Transaction_Type text, Cash_for_Transaction integer, Total_Cash integer)")
 
 #Data array to store data temporarily for showing in the preview window
-#Appending the list from database to this array
-data = [["Date", "Account title", "Transaction", "Cash(Rs.)"]]
+data = [["Date", "Account title", "Transaction", "Cash(Rs.)", "Total Cash(Rs.)"]]
 
 def nexB():
     #Opens the ledger made already
@@ -33,8 +33,8 @@ def nexB():
             tk.Button(ledgerWin, text=ledEntry.get(), font=('Arial', 20), bg='black', fg='#FC4C4F', 
                       width=30, command=openLedger).grid(row=row, column=0, padx=5, pady=5)
 
-            myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash)", 
-                {'date':strftime("%D"), 'acctitle':"Made new Ledger", 'transac':"Starting Cash", 'cash':int(tcEntry.get())})
+            myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash, :total)", 
+                {'date':strftime("%D"), 'acctitle':"Made new Ledger", 'transac':"Starting Cash", 'cash':int(tcEntry.get()), 'total':int(tcEntry.get())})
             myCursor.execute("SELECT * FROM ledger")
             for elist in myCursor.fetchall():
                 data.append(elist)
@@ -131,14 +131,15 @@ def nextB():
                     tk.Button(lrFrame, text=pbox).grid(row=pplace, column=0)
                     pplace+=1
         
-        myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash)", 
-                         {'date':dLabel.cget("text"), 'acctitle':accEntry.get(), 'transac':transac.get(), 'cash':int(cash.get())})
+        myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash, :total)", 
+                         {'date':dLabel.cget("text"), 'acctitle':accEntry.get(), 'transac':transac.get(), 'cash':int(cash.get()), 'total':int(total)})
         #myCursor.execute("SELECT * FROM ledger")
         #print(myCursor.fetchall())
             
 
     def prevShow():
-        data.append([dLabel.cget("text"), accEntry.get(), transac.get(), cash.get()])
+        if(dLabel.cget("text") != "" and accEntry.index("end") != 0 and transac.index("end") != 0 and cash.index("end") != 0):
+            data.append([dLabel.cget("text"), accEntry.get(), transac.get(), cash.get(), str(total)])
         
         previewWin = Tk()
 
@@ -236,7 +237,7 @@ def nextB():
         tk.Button(calWin, text='OK', command=okButton).pack(side='bottom')
 
     
-    dLabel = Label(dFrame, font=('Arial', 20), bg='white', width=10)
+    dLabel = Label(dFrame, text="", font=('Arial', 20), bg='white', width=10)
     dLabel.grid(row=1, column=0, padx=5, pady=5)
 
     tk.Button(dFrame, text='Select Date', font=('Arial', 15), bg='black', fg='#FC4C4F', 
