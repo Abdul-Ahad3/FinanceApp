@@ -14,6 +14,10 @@ myCursor = connection.cursor()
 
 myCursor.execute("CREATE TABLE ledger(Date text, Account_Title text, Transaction_Type text, Cash integer)")
 
+#Data array to store data temporarily for showing in the preview window
+#Appending the list from database to this array
+data = [["Date", "Account title", "Transaction", "Cash(Rs.)"]]
+
 def nexB():
     #Opens the ledger made already
     def openLedger():
@@ -31,6 +35,10 @@ def nexB():
 
             myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash)", 
                 {'date':strftime("%D"), 'acctitle':"Made new Ledger", 'transac':"Starting Cash", 'cash':int(tcEntry.get())})
+            myCursor.execute("SELECT * FROM ledger")
+            for elist in myCursor.fetchall():
+                data.append(elist)
+
         elif(ledEntry.index("end") == 0):
             messagebox.showerror(parent=ledgerWin, title='Error', message='Please enter a valid Ledger name')
         elif(tcEntry.index("end") == 0):
@@ -62,13 +70,7 @@ def nexB():
     ledgerWin.mainloop()
 
 
-#Data array to store data temporarily for showing in the preview window
-#Appending the list from database to this array
-data = [["Date", "Account title", "Transaction", "Cash(Rs.)"]]
-myCursor.execute("SELECT * FROM ledger")
-result = [list(x) for x in myCursor.fetchall()]
-for elist in result:
-    data.extend(elist)
+
 
 #Code for the main window (after next button is pressed)
 def nextB():
