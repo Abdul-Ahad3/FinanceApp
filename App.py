@@ -25,9 +25,9 @@ def close(window):
 #Function to get the total amount of cash left after every transaction
 def getTotal(total):
     if(transac.get() == 'Cash Recieved' or transac.get() == 'Online Recieved' or transac.get() == 'Loan Recieved' or transac.get() == 'Loan Taken'):
-        total = total + int(cash.get())
+        total += int(cash.get())
     elif(transac.get() == 'Cash Payment' or transac.get() == 'Online Payment' or transac.get() == 'Loan Given' or transac.get() == 'Loan Paid'):
-        total = total - int(cash.get())
+        total -= int(cash.get())
     
     return total
 
@@ -155,7 +155,7 @@ def nextB():
             c=0;  r+=1
         
         tk.Button(previewWin, text='OK', font=('Arial', 20), bg='black', fg='#FC4C4F',
-                  width=12, command=lambda: close(previewWin)).grid(row=100, column=100, padx=5, pady=5)
+                  width=12, command=lambda: close(previewWin)).grid(row=100, column=4, padx=5, pady=5)
         
         previewWin.config(bg='#FC4C4F', borderwidth=10, relief='solid')
         previewWin.mainloop()
