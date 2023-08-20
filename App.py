@@ -18,6 +18,9 @@ myCursor.execute("CREATE TABLE ledger(Date text, Account_Title text, Transaction
 #Data array to store data temporarily for showing in the preview window
 data = [["Date", "Account title", "Transaction", "Cash(Rs.)", "Total Cash(Rs.)"]]
 
+def close(window):
+    window.destroy()
+
 def nexB():
     #Opens the ledger made already
     def openLedger():
@@ -88,10 +91,6 @@ def nextB():
     #Function for saving file
     def save():
         pass
-    
-    #Function for exiting the window
-    def exit():
-        mainWin.destroy()
 
     #Function for changing background color
     def bGround():
@@ -134,18 +133,20 @@ def nextB():
                          {'date':dLabel.cget("text"), 'acctitle':accEntry.get(), 'transac':transac.get(), 'cash':int(cash.get()), 'total':int(total)})
         #myCursor.execute("SELECT * FROM ledger")
         #print(myCursor.fetchall())
+
+        messagebox.showinfo(message="Data added successfully")
             
 
     def prevShow():
         if(dLabel.cget("text") != "" and accEntry.index("end") != 0 and transac.index("end") != 0 and cash.index("end") != 0):
             data.append([dLabel.cget("text"), accEntry.get(), transac.get(), cash.get(), str(total)])
         
-        global total
         #Condition to alter the calculation of total cash according to transaction type
         if(transac.get() == 'Cash Recieved' or transac.get() == 'Online Recieved' or transac.get() == 'Loan Recieved' or transac.get() == 'Loan Taken'):
             total = total + int(cash.get())
         elif(transac.get() == 'Cash Payment' or transac.get() == 'Online Payment' or transac.get() == 'Loan Given' or transac.get() == 'Loan Paid'):
             total = total - int(cash.get())
+        
         
         previewWin = Tk()
 
@@ -156,6 +157,8 @@ def nextB():
                          bg='#FC4C4F').grid(row=r, column=c, padx=20, pady=20)
                 c+=1
             c=0;  r+=1
+        
+        tk.Button(previewWin, text='OK', command=lambda: close(previewWin)).grid(row=100, column=100)
         
         previewWin.config(bg='#FC4C4F', borderwidth=10, relief='solid')
         previewWin.mainloop()
@@ -170,7 +173,7 @@ def nextB():
     fileMenu.add_command(label="Open", command=Open)
     fileMenu.add_command(label="Save", command=save)
     fileMenu.add_command(label="Save As")#, command=SaveAs)
-    fileMenu.add_command(label="Exit", command=exit)
+    fileMenu.add_command(label="Exit", command=lambda: close(mainWin))
 
     #Edit drop down menu
     editMenu = Menu(menuBar, tearoff=0, font=("Arial", 10))
@@ -233,6 +236,7 @@ def nextB():
     def setDate():
         def okButton():
             dLabel.config(text=calendar.get_date())
+            close(calWin)
         
         calWin = Tk()
         calWin.title("Select Date")
