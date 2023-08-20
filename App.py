@@ -101,7 +101,7 @@ def nextB():
         dFrame.config(bg=back)
         lrFrame.config(bg=back)
     
-    total=int(tcEntry.get())
+    global total;  total=int(tcEntry.get())
     def addInfo():
         global total
         #Condition to alter the calculation of total cash according to transaction type
@@ -138,6 +138,7 @@ def nextB():
             
 
     def prevShow():
+        global total
         if(dLabel.cget("text") != "" and accEntry.index("end") != 0 and transac.index("end") != 0 and cash.index("end") != 0):
             data.append([dLabel.cget("text"), accEntry.get(), transac.get(), cash.get(), str(total)])
         
