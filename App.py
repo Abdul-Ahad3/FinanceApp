@@ -132,7 +132,7 @@ def nextB():
                     pplace+=1
         
         myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash, :total)", 
-                         {'date':dLabel.cget("text"), 'acctitle':accEntry.get(), 'transac':transac.get(), 'cash':int(cash.get()), 'total':getTotal(int(transac.get()))})
+                         {'date':dLabel.cget("text"), 'acctitle':accEntry.get(), 'transac':transac.get(), 'cash':int(cash.get()), 'total':getTotal(int(tcEntry.get()))})
         #myCursor.execute("SELECT * FROM ledger")
         #print(myCursor.fetchall())
 
@@ -238,7 +238,7 @@ def nextB():
         calWin = Tk()
         calWin.title("Select Date")
         #Calendar to get date
-        calendar = Calendar(calWin, selectmode='day', year=2023, month=strftime("%m"), day=1)
+        calendar = Calendar(calWin, selectmode='day', year=2023, month=int(strftime("%m")), day=1)
         calendar.pack()
         calWin.lift()
         tk.Button(calWin, text='OK', command=okButton).pack(side='bottom')
