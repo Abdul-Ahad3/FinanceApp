@@ -18,11 +18,18 @@ myCursor.execute("CREATE TABLE ledger(Date text, Account_Title text, Transaction
 #Data array to store data temporarily for showing in the preview window
 data = [["Date", "Account title", "Transaction", "Cash(Rs.)", "Total Cash(Rs.)"]]
 
+#Function to close a window
 def close(window):
     window.destroy()
 
-def getTotal():
-    pass
+#Function to get the total amount of cash left after every transaction
+def getTotal(total):
+    if(transac.get() == 'Cash Recieved' or transac.get() == 'Online Recieved' or transac.get() == 'Loan Recieved' or transac.get() == 'Loan Taken'):
+        total = total + int(cash.get())
+    elif(transac.get() == 'Cash Payment' or transac.get() == 'Online Payment' or transac.get() == 'Loan Given' or transac.get() == 'Loan Paid'):
+        total = total - int(cash.get())
+    
+    return total
 
 def nexB():
     #Opens the ledger made already
@@ -104,15 +111,7 @@ def nextB():
         dFrame.config(bg=back)
         lrFrame.config(bg=back)
     
-    global total;  total=int(tcEntry.get())
     def addInfo():
-        global total
-        #Condition to alter the calculation of total cash according to transaction type
-        if(transac.get() == 'Cash Recieved' or transac.get() == 'Online Recieved' or transac.get() == 'Loan Recieved' or transac.get() == 'Loan Taken'):
-            total = total + int(cash.get())
-        elif(transac.get() == 'Cash Payment' or transac.get() == 'Online Payment' or transac.get() == 'Loan Given' or transac.get() == 'Loan Paid'):
-            total = total - int(cash.get())
-        
         if(transac.get() == "Loan Taken" or transac.get() == "Loan Given"):
             if (messagebox.askyesno(message='Would you like to add a reminder for the loan?')):
                 lplace = 1
@@ -133,7 +132,7 @@ def nextB():
                     pplace+=1
         
         myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash, :total)", 
-                         {'date':dLabel.cget("text"), 'acctitle':accEntry.get(), 'transac':transac.get(), 'cash':int(cash.get()), 'total':int(total)})
+                         {'date':dLabel.cget("text"), 'acctitle':accEntry.get(), 'transac':transac.get(), 'cash':int(cash.get()), 'total':getTotal(int(transac.get()))})
         #myCursor.execute("SELECT * FROM ledger")
         #print(myCursor.fetchall())
 
@@ -143,15 +142,9 @@ def nextB():
     global total
     def prevShow():
         if(dLabel.cget("text") != "" and accEntry.index("end") != 0 and transac.index("end") != 0 and cash.index("end") != 0):
-            data.append([dLabel.cget("text"), accEntry.get(), transac.get(), cash.get(), str(total)])
+            data.append([dLabel.cget("text"), accEntry.get(), transac.get(), cash.get(), str(getTotal(int(tcEntry.get())))])
         
-        #Condition to alter the calculation of total cash according to transaction type
-        if(transac.get() == 'Cash Recieved' or transac.get() == 'Online Recieved' or transac.get() == 'Loan Recieved' or transac.get() == 'Loan Taken'):
-            total = total + int(cash.get())
-        elif(transac.get() == 'Cash Payment' or transac.get() == 'Online Payment' or transac.get() == 'Loan Given' or transac.get() == 'Loan Paid'):
-            total = total - int(cash.get())
-        
-        
+        #New window for showing preview
         previewWin = Tk()
 
         r = 0;  c = 0
@@ -265,6 +258,7 @@ def nextB():
     #Transaction
     tk.Label(tFrame, text='Select Transaction', font=('Arial', 20), bg='#FC4C4F').grid(row=0, column=0, padx=5, pady=5)
 
+    global transac
     transac = ttk.Combobox(tFrame, values=['Cash Recieved', 'Online Recieved', 'Cash Payment', 
                                           'Online Payment', 'Loan Given', 'Loan Recieved',
                                           'Loan Taken', 'Loan Paid', 'Payment Due'],
@@ -275,6 +269,7 @@ def nextB():
     tk.Label(tFrame, text='Amount(Cash)', font=('Arial', 20), 
              bg='#FC4C4F').grid(row=0, column=1, padx=5, pady=5)
 
+    global cash
     cash = Entry(tFrame, font=('Arial', 20), width=20)
     cash.grid(row=1, column=1, padx=5, pady=5)
     
