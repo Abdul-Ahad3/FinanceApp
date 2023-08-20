@@ -21,6 +21,9 @@ data = [["Date", "Account title", "Transaction", "Cash(Rs.)", "Total Cash(Rs.)"]
 def close(window):
     window.destroy()
 
+def getTotal():
+    pass
+
 def nexB():
     #Opens the ledger made already
     def openLedger():
@@ -137,8 +140,8 @@ def nextB():
         messagebox.showinfo(message="Data added successfully")
             
 
+    global total
     def prevShow():
-        global total
         if(dLabel.cget("text") != "" and accEntry.index("end") != 0 and transac.index("end") != 0 and cash.index("end") != 0):
             data.append([dLabel.cget("text"), accEntry.get(), transac.get(), cash.get(), str(total)])
         
@@ -159,7 +162,8 @@ def nextB():
                 c+=1
             c=0;  r+=1
         
-        tk.Button(previewWin, text='OK', command=lambda: close(previewWin)).grid(row=100, column=100)
+        tk.Button(previewWin, text='OK', font=('Arial', 20), bg='black', fg='#FC4C4F',
+                  width=12, command=lambda: close(previewWin)).grid(row=100, column=100)
         
         previewWin.config(bg='#FC4C4F', borderwidth=10, relief='solid')
         previewWin.mainloop()
