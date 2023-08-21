@@ -33,7 +33,24 @@ def getTotal(total):
     
 
 def reminder():
-    pass
+    if(transac.get() == "Loan Taken" or transac.get() == "Loan Given"):
+        if (messagebox.askyesno(message='Would you like to add a reminder for the loan?')):
+            lplace = 1
+            while lplace<=3:
+                lbox = simpledialog.askstring("Loan Title", "Enter the name of recipient/donor")
+                lbox1 = simpledialog.askstring("Due date", "Enter due date in format dd/mm/yyyy")
+                tk.Button(lrFrame, text=lbox).grid(row=lplace, column=0)
+                lplace+=1
+        
+    if(transac.get() == "Payment Due"):
+        if (messagebox.askyesno(message='Would you like to add a reminder for the payment?')):
+            pbox = simpledialog.askstring("Payment Title", "Enter the name of recipient/payer")
+            pbox1 = simpledialog.askstring("Due date", "Enter due date in format dd/mm/yyyy")
+
+            pplace = 1
+            while pplace<=3:
+                tk.Button(lrFrame, text=pbox).grid(row=pplace, column=0)
+                pplace+=1
 
 def nexB():
     #Opens the ledger made already
@@ -116,24 +133,6 @@ def nextB():
         lrFrame.config(bg=back)
     
     def addInfo():
-        if(transac.get() == "Loan Taken" or transac.get() == "Loan Given"):
-            if (messagebox.askyesno(message='Would you like to add a reminder for the loan?')):
-                lplace = 1
-                while lplace<=3:
-                    lbox = simpledialog.askstring("Loan Title", "Enter the name of recipient/donor")
-                    lbox1 = simpledialog.askstring("Due date", "Enter due date in format dd/mm/yyyy")
-                    tk.Button(lrFrame, text=lbox).grid(row=lplace, column=0)
-                    lplace+=1
-        
-        if(transac.get() == "Payment Due"):
-            if (messagebox.askyesno(message='Would you like to add a reminder for the payment?')):
-                pbox = simpledialog.askstring("Payment Title", "Enter the name of recipient/payer")
-                pbox1 = simpledialog.askstring("Due date", "Enter due date in format dd/mm/yyyy")
-
-                pplace = 1
-                while pplace<=3:
-                    tk.Button(lrFrame, text=pbox).grid(row=pplace, column=0)
-                    pplace+=1
         
         myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash, :total)", 
                          {'date':dLabel.cget("text"), 'acctitle':accEntry.get(), 'transac':transac.get(), 'cash':int(cash.get()), 'total':getTotal(int(tcEntry.get()))})
