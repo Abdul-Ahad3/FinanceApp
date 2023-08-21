@@ -26,10 +26,14 @@ def close(window):
 def getTotal(total):
     if(transac.get() == 'Cash Recieved' or transac.get() == 'Online Recieved' or transac.get() == 'Loan Recieved' or transac.get() == 'Loan Taken'):
         total += int(cash.get())
+        return total
     elif(transac.get() == 'Cash Payment' or transac.get() == 'Online Payment' or transac.get() == 'Loan Given' or transac.get() == 'Loan Paid'):
         total -= int(cash.get())
+        return total
     
-    return total
+
+def reminder():
+    pass
 
 def nexB():
     #Opens the ledger made already
