@@ -32,14 +32,14 @@ def getTotal(total):
         return total
     
 
-def reminder():
+def reminder(frame):
     if(transac.get() == "Loan Taken" or transac.get() == "Loan Given"):
         if (messagebox.askyesno(message='Would you like to add a reminder for the loan?')):
             lplace = 1
             while lplace<=3:
                 lbox = simpledialog.askstring("Loan Title", "Enter the name of recipient/donor")
                 lbox1 = simpledialog.askstring("Due date", "Enter due date in format dd/mm/yyyy")
-                tk.Button(lrFrame, text=lbox).grid(row=lplace, column=0)
+                tk.Button(frame, text=lbox).grid(row=lplace, column=0)
                 lplace+=1
         
     if(transac.get() == "Payment Due"):
@@ -49,7 +49,7 @@ def reminder():
 
             pplace = 1
             while pplace<=3:
-                tk.Button(lrFrame, text=pbox).grid(row=pplace, column=0)
+                tk.Button(frame, text=pbox).grid(row=pplace, column=0)
                 pplace+=1
 
 def nexB():
@@ -133,7 +133,8 @@ def nextB():
         lrFrame.config(bg=back)
     
     def addInfo():
-        
+        reminder(lrFrame)
+
         myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash, :total)", 
                          {'date':dLabel.cget("text"), 'acctitle':accEntry.get(), 'transac':transac.get(), 'cash':int(cash.get()), 'total':getTotal(int(tcEntry.get()))})
         #myCursor.execute("SELECT * FROM ledger")
