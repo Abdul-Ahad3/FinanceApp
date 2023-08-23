@@ -24,12 +24,13 @@ def close(window):
 
 #Function to get the total amount of cash left after every transaction
 def getTotal(total):
+    int(total)
     if(transac.get() == 'Cash Recieved' or transac.get() == 'Online Recieved' or transac.get() == 'Loan Recieved' or transac.get() == 'Loan Taken'):
         total += int(cash.get())
-        return total
     elif(transac.get() == 'Cash Payment' or transac.get() == 'Online Payment' or transac.get() == 'Loan Given' or transac.get() == 'Loan Paid'):
         total -= int(cash.get())
-        return total
+
+    yield total
     
 #Function for reminders
 def reminder(frame):
@@ -133,7 +134,7 @@ def nextB():
         reminder(lrFrame)
 
         myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash, :total)", 
-                         {'date':dLabel.cget("text"), 'acctitle':accEntry.get(), 'transac':transac.get(), 'cash':int(cash.get()), 'total':getTotal(int(tcEntry.get()))})
+                         {'date':dLabel.cget("text"), 'acctitle':accEntry.get(), 'transac':transac.get(), 'cash':int(cash.get()), 'total':next(getTotal(tcEntry.get()))})
         #myCursor.execute("SELECT * FROM ledger")
         #print(myCursor.fetchall())
 
@@ -142,7 +143,7 @@ def nextB():
 
     def prevShow():
         if(dLabel.cget("text") != "" and accEntry.index("end") != 0 and transac.index("end") != 0 and cash.index("end") != 0):
-            data.append([dLabel.cget("text"), accEntry.get(), transac.get(), cash.get(), str(getTotal(int(tcEntry.get())))])
+            data.append([dLabel.cget("text"), accEntry.get(), transac.get(), cash.get(), str(next(getTotal(tcEntry.get())))])
         
         #New window for showing preview
         previewWin = Tk()
