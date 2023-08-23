@@ -31,26 +31,23 @@ def getTotal(total):
         total -= int(cash.get())
         return total
     
-
+#Function for reminders
 def reminder(frame):
     if(transac.get() == "Loan Taken" or transac.get() == "Loan Given"):
         if (messagebox.askyesno(message='Would you like to add a reminder for the loan?')):
             lplace = 1
-            while lplace<=3:
-                lbox = simpledialog.askstring("Loan Title", "Enter the name of recipient/donor")
-                lbox1 = simpledialog.askstring("Due date", "Enter due date in format dd/mm/yyyy")
-                tk.Button(frame, text=lbox).grid(row=lplace, column=0)
-                lplace+=1
+            lbox = simpledialog.askstring("Loan Title", "Enter the name of recipient/donor")
+            lbox1 = simpledialog.askstring("Due date", "Enter due date in format dd/mm/yyyy")
+            tk.Button(frame, text=lbox).grid(row=lplace, column=0)
+            lplace+=1
         
     if(transac.get() == "Payment Due"):
         if (messagebox.askyesno(message='Would you like to add a reminder for the payment?')):
+            pplace = 4
             pbox = simpledialog.askstring("Payment Title", "Enter the name of recipient/payer")
             pbox1 = simpledialog.askstring("Due date", "Enter due date in format dd/mm/yyyy")
-
-            pplace = 1
-            while pplace<=3:
-                tk.Button(frame, text=pbox).grid(row=pplace, column=0)
-                pplace+=1
+            tk.Button(frame, text=pbox).grid(row=pplace, column=0)
+            pplace+=1
 
 def nexB():
     #Opens the ledger made already
