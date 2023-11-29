@@ -6,14 +6,6 @@ from tkinter import messagebox
 from tkcalendar import *
 from tkinter import simpledialog
 from time import *
-import sqlite3
-import os
-
-#SQLite database (connection and cursor)
-myConnection = sqlite3.connect(':memory:')
-myCursor = myConnection.cursor()
-
-myCursor.execute("CREATE TABLE ledger(Date text, Account_Title text, Transaction_Type text, Cash_for_Transaction integer, Total_Cash integer)")
 
 #Data array to store data temporarily for showing in the preview window
 data = [["Date", "Account title", "Transaction", "Cash(Rs.)", "Total Cash(Rs.)"]]
@@ -65,11 +57,6 @@ def nexB():
             tk.Button(ledgerWin, text=ledEntry.get(), font=('Arial', 20), bg='black', fg='#FC4C4F', 
                       width=30, command=openLedger).grid(row=row, column=0, padx=5, pady=5)
 
-            myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash, :total)", 
-                {'date':strftime("%D"), 'acctitle':"Made new Ledger", 'transac':"Starting Cash", 'cash':int(tcEntry.get()), 'total':int(tcEntry.get())})
-            myCursor.execute("SELECT * FROM ledger")
-            for elist in myCursor.fetchall():
-                data.append(elist)
 
         elif(ledEntry.index("end") == 0):
             messagebox.showerror(parent=ledgerWin, title='Error', message='Please enter a valid Ledger name')
@@ -132,11 +119,6 @@ def nextB():
     
     def addInfo():
         reminder(lrFrame)
-
-        myCursor.execute("INSERT INTO ledger VALUES(:date, :acctitle, :transac, :cash, :total)", 
-                         {'date':dLabel.cget("text"), 'acctitle':accEntry.get(), 'transac':transac.get(), 'cash':int(cash.get()), 'total':next(getTotal(tcEntry.get()))})
-        #myCursor.execute("SELECT * FROM ledger")
-        #print(myCursor.fetchall())
 
         messagebox.showinfo(message="Data added successfully")
             
