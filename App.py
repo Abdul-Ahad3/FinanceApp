@@ -269,7 +269,7 @@ def nextB():
 
 #Welcome window
 welcome = Tk()
-welcome.title("Finance App")
+welcome.title("EASY FINANCE")
 
 tk.Label(welcome, text="Finance App", font=('Arial',50,'bold'),bg='#FC4C4F').pack()
 tk.Label(welcome, text="WELCOME", font=('Arial',50),bg='#FC4C4F').pack()
