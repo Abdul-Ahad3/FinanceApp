@@ -17,12 +17,13 @@ def close(window):
 #Function to get the total amount of cash left after every transaction
 def getTotal(total):
     int(total)
+    c = int(cash.get())
     if(transac.get() == 'Cash Recieved' or transac.get() == 'Online Recieved' or transac.get() == 'Loan Recieved' or transac.get() == 'Loan Taken'):
-        total += int(cash.get())
+        total += c
     elif(transac.get() == 'Cash Payment' or transac.get() == 'Online Payment' or transac.get() == 'Loan Given' or transac.get() == 'Loan Paid'):
-        total -= int(cash.get())
+        total -= c
 
-    yield total
+    yield str(total)
     
 #Function for reminders
 def reminder(frame):
@@ -94,7 +95,7 @@ def nexB():
 #Code for the main window (after next button is pressed)
 def nextB():
     mainWin = Tk()
-    mainWin.title("Finance App")
+    mainWin.title("EASY FINANCE")
 
     #Function for opening a new file
     def newP():
@@ -119,14 +120,18 @@ def nextB():
     
     def addInfo():
         reminder(lrFrame)
+        if (dLabel.cget("text") != "" and accEntry.index("end") != 0 and transac.index("end") != 0 and cash.index("end") != 0):
+            data.append([dLabel.cget("text"),
+                         accEntry.get(),
+                         transac.get(),
+                         cash.get(),
+                         next(getTotal(int(tcEntry.get())))])
 
         messagebox.showinfo(message="Data added successfully")
             
 
     def prevShow():
-        if(dLabel.cget("text") != "" and accEntry.index("end") != 0 and transac.index("end") != 0 and cash.index("end") != 0):
-            data.append([dLabel.cget("text"), accEntry.get(), transac.get(), cash.get(), str(next(getTotal(tcEntry.get())))])
-        
+
         #New window for showing preview
         previewWin = Tk()
 
