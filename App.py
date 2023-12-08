@@ -65,7 +65,7 @@ def nexB():
             messagebox.showerror(parent=ledgerWin, title='Error', message='Please enter a valid cash amount')
     
     ledgerWin = Tk()
-    ledgerWin.title("Finance App")
+    ledgerWin.title("EASY FINANCE")
    
     #Total Available Cash
     global tcEntry
@@ -276,7 +276,7 @@ def nextB():
 welcome = Tk()
 welcome.title("EASY FINANCE")
 
-tk.Label(welcome, text="Finance App", font=('Arial',50,'bold'),bg='#FC4C4F').pack()
+tk.Label(welcome, text="EASY FINANCE", font=('Arial',50,'bold'),bg='#FC4C4F').pack()
 tk.Label(welcome, text="WELCOME", font=('Arial',50),bg='#FC4C4F').pack()
 tk.Button(text='NEXT', font=('Arial',40), bg='black', fg='#FC4C4F', command=nexB).place(relx=0.35, rely=0.6)
 
