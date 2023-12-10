@@ -281,7 +281,7 @@ def login():
     tk.Label(Login, text = "Name: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=1, column=0, padx=5, pady=5)
     tk.Entry(Login, font=('Arial',20,'bold')).grid(row=2, column=0, padx=5, pady=5)
 
-    tk.Label(Login, text = "Username: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=1, column=1, padx=5, pady=5)
+    tk.Label(Login, text = "User name: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=1, column=1, padx=5, pady=5)
     tk.Entry(Login, font=('Arial',20,'bold')).grid(row=2, column=1, padx=5, pady=5)
 
     tk.Label(Login, text = "E-mail: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=3, column=0, padx=5, pady=5)
@@ -292,11 +292,26 @@ def login():
     
     tk.Button(Login, text='NEXT', font=('Arial',30), bg='black', fg='#FC4C4F', command=nexB).grid(row=5, column = 0, padx=5, pady=5, columnspan=2)
     
+    Login.resizable(False, False)
     Login.config(background="#FC4C4F")
     Login.mainloop()
 
 def signin():
-    pass
+    Signin = Tk()
+    
+    tk.Label(Signin, text = "Sign In", font=('Arial',30,'bold'), bg='#FC4C4F').grid(row=0, column=0, padx=5, pady=5)
+    
+    tk.Label(Signin, text = "User name: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=1, column=0, padx=5, pady=5)
+    tk.Entry(Signin, font=('Arial',20,'bold')).grid(row=2, column=0, padx=5, pady=5)
+    
+    tk.Label(Signin, text = "Password: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=3, column=0, padx=5, pady=5)
+    tk.Entry(Signin, font=('Arial',20,'bold')).grid(row=4, column=0, padx=5, pady=5)
+    
+    tk.Button(Signin, text='NEXT', font=('Arial',30), bg='black', fg='#FC4C4F', command=nexB).grid(row=5, column=0, padx=5, pady=5)
+    
+    Signin.resizable(False, False)
+    Signin.config(background="#FC4C4F")
+    Signin.mainloop()
 
 #Welcome window
 welcome = Tk()
