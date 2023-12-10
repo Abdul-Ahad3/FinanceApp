@@ -272,28 +272,43 @@ def nextB():
     mainWin.geometry("800x600")
     mainWin.config(background="#FC4C4F", menu=menuBar)
 
+
+def login():
+    Login = Tk()
+    
+    tk.Label(Login, text = "Log In", font=('Arial',30,'bold'), bg='#FC4C4F').grid(row=0, column=0, padx=5, pady=5, columnspan=2)
+    
+    tk.Label(Login, text = "Name: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=1, column=0, padx=5, pady=5)
+    tk.Entry(Login, font=('Arial',20,'bold')).grid(row=2, column=0, padx=5, pady=5)
+
+    tk.Label(Login, text = "Username: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=1, column=1, padx=5, pady=5)
+    tk.Entry(Login, font=('Arial',20,'bold')).grid(row=2, column=1, padx=5, pady=5)
+
+    tk.Label(Login, text = "E-mail: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=3, column=0, padx=5, pady=5)
+    tk.Entry(Login, font=('Arial',20,'bold')).grid(row=4, column=0, padx=5, pady=5)
+
+    tk.Label(Login, text = "Password: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=3, column=1, padx=5, pady=5)
+    tk.Entry(Login, font=('Arial',20,'bold')).grid(row=4, column=1, padx=5, pady=5)
+    
+    tk.Button(Login, text='NEXT', font=('Arial',30), bg='black', fg='#FC4C4F', command=nexB).grid(row=5, column = 0, padx=5, pady=5, columnspan=2)
+    
+    Login.config(background="#FC4C4F")
+    Login.mainloop()
+
+def signin():
+    pass
+
 #Welcome window
 welcome = Tk()
 welcome.title("EASY FINANCE")
 
-tk.Label(welcome, text="EASY FINANCE", font=('Arial',50,'bold'),bg='#FC4C4F').grid(row=0, column=0, columnspan=2)
-tk.Label(welcome, text="WELCOME", font=('Arial',50),bg='#FC4C4F').grid(row=1, column=0, columnspan=2)
+tk.Label(welcome, text="EASY FINANCE", font=('Arial',50,'bold'),bg='#FC4C4F').pack()
+tk.Label(welcome, text="WELCOME", font=('Arial',50),bg='#FC4C4F').pack()
 
-tk.Label(welcome, text = "Name: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=2, column=0, padx=5, pady=5)
-tk.Entry(welcome, font=('Arial',20,'bold')).grid(row=3, column=0, padx=5, pady=5)
+tk.Button(text='LOGIN', font=('Arial',40), bg='black', fg='#FC4C4F', command=login).pack()
+tk.Button(text='SIGN IN', font=('Arial',40), bg='black', fg='#FC4C4F', command=signin).pack()
 
-tk.Label(welcome, text = "Username: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=2, column=1, padx=5, pady=5)
-tk.Entry(welcome, font=('Arial',20,'bold')).grid(row=3, column=1, padx=5, pady=5)
-
-tk.Label(welcome, text = "E-mail: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=4, column=0, padx=5, pady=5)
-tk.Entry(welcome, font=('Arial',20,'bold')).grid(row=5, column=0, padx=5, pady=5)
-
-tk.Label(welcome, text = "Password: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=4, column=1, padx=5, pady=5)
-tk.Entry(welcome, font=('Arial',20,'bold')).grid(row=5, column=1, padx=5, pady=5)
-
-tk.Button(text='NEXT', font=('Arial',40), bg='black', fg='#FC4C4F', command=nexB).grid(row=6, column=0, columnspan=2)
-
-welcome.geometry("600x600")
+welcome.geometry("500x500")
 welcome.config(background="#FC4C4F")
 
 welcome.mainloop()
