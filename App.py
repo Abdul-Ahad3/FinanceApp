@@ -276,11 +276,24 @@ def nextB():
 welcome = Tk()
 welcome.title("EASY FINANCE")
 
-tk.Label(welcome, text="EASY FINANCE", font=('Arial',50,'bold'),bg='#FC4C4F').pack()
-tk.Label(welcome, text="WELCOME", font=('Arial',50),bg='#FC4C4F').pack()
-tk.Button(text='NEXT', font=('Arial',40), bg='black', fg='#FC4C4F', command=nexB).place(relx=0.35, rely=0.6)
+tk.Label(welcome, text="EASY FINANCE", font=('Arial',50,'bold'),bg='#FC4C4F').grid(row=0, column=0, columnspan=2)
+tk.Label(welcome, text="WELCOME", font=('Arial',50),bg='#FC4C4F').grid(row=1, column=0, columnspan=2)
 
-welcome.geometry("500x500")
+tk.Label(welcome, text = "Name: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=2, column=0, padx=5, pady=5)
+tk.Entry(welcome, font=('Arial',20,'bold')).grid(row=3, column=0, padx=5, pady=5)
+
+tk.Label(welcome, text = "Username: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=2, column=1, padx=5, pady=5)
+tk.Entry(welcome, font=('Arial',20,'bold')).grid(row=3, column=1, padx=5, pady=5)
+
+tk.Label(welcome, text = "E-mail: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=4, column=0, padx=5, pady=5)
+tk.Entry(welcome, font=('Arial',20,'bold')).grid(row=5, column=0, padx=5, pady=5)
+
+tk.Label(welcome, text = "Password: ", font=('Arial',20,'bold'),bg='#FC4C4F').grid(row=4, column=1, padx=5, pady=5)
+tk.Entry(welcome, font=('Arial',20,'bold')).grid(row=5, column=1, padx=5, pady=5)
+
+tk.Button(text='NEXT', font=('Arial',40), bg='black', fg='#FC4C4F', command=nexB).grid(row=6, column=0, columnspan=2)
+
+welcome.geometry("600x600")
 welcome.config(background="#FC4C4F")
 
 welcome.mainloop()
