@@ -69,7 +69,7 @@ def nexB():
             messagebox.showerror(parent=ledgerWin, title='Error', message='Please enter a valid cash amount')
     
     ledgerWin = Tk()
-    ledgerWin.title("EASY FINANCE")
+    ledgerWin.title("FinEase")
    
     #Total Available Cash
     global tcEntry
@@ -99,7 +99,7 @@ def nexB():
 #Code for the main window (after next button is pressed)
 def nextB():
     mainWin = Tk()
-    mainWin.title("EASY FINANCE")
+    mainWin.title("FinEase")
 
     #Function for opening a new file
     def newP():
@@ -138,6 +138,7 @@ def nextB():
 
         #New window for showing preview
         previewWin = Tk()
+        previewWin.title("FinEase")
 
         r = 0;  c = 0
         for elist in data:
@@ -279,6 +280,7 @@ def nextB():
 
 def login():
     Login = Tk()
+    Login.title("FinEase")
     
     tk.Label(Login, text = "Log In", font=('Arial',30,'bold'), bg='#FC4C4F').grid(row=0, column=0, padx=5, pady=5, columnspan=2)
     
@@ -302,6 +304,7 @@ def login():
 
 def signin():
     Signin = Tk()
+    Signin.title("FinEase")
     
     tk.Label(Signin, text = "Sign In", font=('Arial',30,'bold'), bg='#FC4C4F').grid(row=0, column=0, padx=5, pady=5)
     
@@ -319,9 +322,9 @@ def signin():
 
 #Welcome window
 welcome = Tk()
-welcome.title("EASY FINANCE")
+welcome.title("FinEase")
 
-tk.Label(welcome, text="EASY FINANCE", font=('Arial',50,'bold'),bg='#FC4C4F').pack()
+tk.Label(welcome, text="FINEASE", font=('Arial',50,'bold'),bg='#FC4C4F').pack()
 tk.Label(welcome, text="WELCOME", font=('Arial',50),bg='#FC4C4F').pack()
 
 tk.Button(text='LOGIN', font=('Arial',40), bg='black', fg='#FC4C4F', command=login).pack()
