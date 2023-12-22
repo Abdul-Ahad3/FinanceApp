@@ -21,13 +21,29 @@ def convert_date(date_string):
     date_object = datetime.strptime(date_string, '%m/%d/%y')
     return date_object.strftime('%Y-%m-%d')
 
+
+#connecting code to server
+mydb_connect = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="helloworld",
+    auth_plugin="mysql_native_password"
+)
+
+mcursor = mydb_connect.cursor()
+
+mcursor.execute("CREATE DATABASE IF NOT EXISTS dbsproject")
+mcursor.execute("USE dbsproject")
+
 #connecting code to database
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="Misha1071",
-    database="dbsproject"
+    password="helloworld",
+    database="dbsproject",
+    auth_plugin="mysql_native_password"
 )
+
 mycursor = mydb.cursor()
 
 # Table creation queries
